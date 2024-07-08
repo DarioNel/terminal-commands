@@ -1,0 +1,462 @@
+﻿COMANDOS BASH LINUX
+
+fecha: 21/07/2023
+
+—-------------------------------------ADMINISTRACIÓN DEL SISTEMA-----------------------------------
+
+date   # Muestra la fecha del sistema
+
+sudo date -s AAAA-MM-DD HH:MM:SS # Para modificar la fecha y hora.
+
+uname -a # Muestra la versión 
+
+lsb_release -a  # Muestra la distribución de linux instalada.
+
+neofetch  # Muestra la distribución de linux instalada.
+
+whoami  # Muestra el usuario
+
+hostname # Muestra el nombre del host (pc)
+
+shutdown [-parámetro]            # Apagado y reinicio del equipo
+
+-r now                                        # Reinicia el equipo 
+-h now                                       # Apaga el equipo 
+-h +1                                          # Apaga el equipo en 1min 
+-r +1                                           # Reinicia el equipo en 1min 
+-h 00:00                                     # Pone un tiempo
+-c                                                # Anula el apagado y el reinicio
+
+                                                  
+reboot                                        # Reinicia el equipo 
+init 6                                           # Reinicia el equipo
+poweroff                                    # Apaga el equipo 
+init 0                                           # Apaga el equipo
+telint 0                                        # Apaga el equipo
+halt -p                                         # Apaga el equipo
+sudo systemctl suspend         # Suspende el equipo
+                       
+ps [opción] # Muestra los procesos 
+aux  # Muestra la lista de procesos junto con los servicios que están ejecutando.
+
+bg # Reanuda un proceso en segundo plano, cuando presionan Ctrl + Z
+
+kill -9 #PID                 # Se pone el número del pid que desea matar.
+pkill -9 Nombre         # Para matar el proceso por su nombre
+
+which # Muestra o establece una ruta de búsqueda para archivos ejecutables.
+
+# Systemd
+
+sudo systemctl status [servicio]  # Ver el estado del servicio 
+
+sudo systemctl start [servicio]   # Iniciar el servicio 
+sudo systemctl stop [servicio]   # Detener el servicio 
+
+sudo systemctl enable [servicio]  # Habilitar el servicio (al arranque del sistema)
+
+sudo systemctl disable[servicio]  # Deshabilitar el servicio (del arranque del sistema)
+
+sudo systemctl restart [servicio] # Reiniciar el servicio 
+
+sudo service [servicio] status # SysV 
+
+systemctl list-units --type=service  # Ver todos los servicios systemd
+
+systemctl list-unit-files --type service --all   # Ver todos los servicios systemd
+
+service --status-all   # Ver todos los servicios sysV
+
+
+
+—-------------------------------------GESTIÓN DE ARCHIVOS Y CARPETAS----------------------------
+                                                                 
+pwd  # Muestra donde estamos ubicado mostrando la ruta absoluta
+
+cd  # Nos permite navegar entre directorios
+
+cd..  # Nos permite ir a un directorio anterior.    
+
+ls  [-parámetro][path] Lista directorios
+
+-l   Muestra los permisos
+-h  Muestra en lenguaje humano
+-a  Muestra archivos y directorios ocultos
+-S  Muestra el tamaño
+     
+clear   Limpia la pantalla
+
+cp [-parámetro] Origen [path][file]  Destino [path] # Copia Archivos y directorios
+-i  # Pide confirmación antes de copiar.
+-r # Copia todo incluyendo directorios vacíos.
+
+rsync -arzhvPn --delete --exclude=dir1 ORIGEN/* DESTINO/
+-a conserva los atributos del archivo
+-r copia de forma recursiva
+-z comprime a medida que copia para que sea mas rapido
+-h para ver de forma humana mas legible
+-v verbose, para que me muestre informacion por consola
+-P para mostrar una barra de progreso a medida que copia
+-n para mostrar la acción antes de copiar
+-- delete para borrar archivos que sean repetidos
+--exclude=dir1 por si no quiero incluir un directorio
+
+mv [-parámetro] Origen [path][file] Destino [path] # Renombra y mueve directorios
+-i # Pide confirmación si hay archivos existentes
+-f
+
+mv [path][file1] [file2] # Renombra un archivo
+
+rm [-parámetro] [path][file] # Elimina archivos y directorios
+-i    #  Pide confirmación antes de eliminar
+-r   #  No pide confirmación antes de eliminar
+-R  #  Elimina todos los archivos de subdirectorios
+-f   #  Fuerza la eliminación de solo lectura.
+-    #  Elimina archivos de solo lectura
+-    #  Elimina archivos ocultos
+
+md, mkdir [path] # Crea directorios.
+
+touch Archivo.txt   # Crea un archivo de texto plano con texto.
+
+echo # Imprime un mensaje por consola
+
+echo [texto] > Archivo.txt # Crea un archivo de texto plano con texto.
+
+tree [-parámetro][path] # Muestra un árbol del directorio.
+-a Muestra los archivos y directorios ocultos
+
+cat [path][file] # Muestra el contenido de archivos de texto
+
+nl [path][file] # Muestra el contenido de archivos de texto con números de linea
+
+less [path][file] # Muestra el contenido en forma de página como nano
+
+head [path][file] # Muestra las 10 primeras líneas
+
+tail [path][file] # Muestra las 10 últimas líneas
+
+tail -f [path][file] # Muestra en tiempo real las líneas de un evento
+
+ls -lh | grep  “file.txt”     # Permite filtrar por el nombre que ponemos
+
+cat file.txt | set ‘s/hola/hola2/’ Remplaza hola por hola2 en el archivo
+
+find / -name '*file*' -print  # Buscar todos los archivos con ese nombre
+# Para entrar en el PATH
+
+nano ~/.bashrc
+
+export PATH=$PATH:
+
+source ~/.bashrc # Guardar configuraciones
+
+—-------------------------------------GESTIÓN DE DISCOS Y ALMACENAMIENTO-------------------
+
+
+lsblk                       # Ver los discos que están en el dispositivo.
+sudo fdisk -l          # Ver los discos que están en el dispositivo.
+sudo parted -l        # Ver los discos que están en el dispositivo.
+df -h
+du -h [path]
+
+# Montar un Disco
+
+dpkg -l | grep ntfs-3g
+
+sudo apt install ntfs-3g
+
+sudo mount /dev/sdb /mnt/dir              #Montar un disco sbd en ese directorio
+
+sudo mount -t ntfs /dev/sdb /mnt/dir   #Montar un disco ntfs en ese directorio
+
+sudo mount -t vfat /dev/sdb /mnt/dir   #Montar un disco fat32 en ese directorio
+
+sudo blkid  # Me da información UUID para montar
+
+sudo nano /etc/fstab # Montar un Disco Permanente
+
+UUID=53FB3F3B53A12FD4 /media/usuario ntfs defaults 0 0
+
+# Montar un disco en red unidad D
+
+sudo mount -t cifs //IP/D$ /mnt/dir -o username=user,password=hola123 ,noperm
+
+# Montar un disco en red unidad D permanente
+
+sudo nano /etc/fstab 
+
+//IP/D$ /mnt/dir cifs username=user,password=hola123  0 0 
+
+sudo mount -a # Montar todo
+sudo umount -a # Desmontar todo
+
+sudo mount /dev/sda1 # Desmontar una unidad
+
+udisksctl unmount --force -b /dev/sda1 # Quitar con seguridad
+
+udisks unmount --force -b /dev/sda1  # Quitar con seguridad
+
+# Primer paso muy recomendable es desmontar la partición
+umount /dev/sdd1
+ 
+# Utilizaremos fatlabel si el sistema de ficheros es FAT/FAT32
+fatlabel /dev/sdd1 nueva_etiqueta
+ 
+# e2label o tune2fs para ext2/3/4
+e2label /dev/sdd1 nueva_etiqueta
+tune2fs -L nueva_etiqueta /dev/sdd1
+ 
+# En caso de tratar con NTFS utilizaremos ntfslabel
+ntfslabel /dev/sdd1 nueva_etiqueta
+
+# Extraer de forma segura
+sudo umount /dev/sdx /media/pendrive
+sudo eject  /dev/sdx
+
+#Formatear unidades
+
+sudo mkfs.vfat / dev / sdc1
+sudo mkfs.ntfs / dev / sdc1
+sudo mkfs.ext4 / dev / sdc1
+
+—-------------------------------------GESTIÓN DE USUARIOS Y PERMISOS-----------------------------
+# Users
+nano /etc/default/useradd
+nano /etc /passwd
+nano /etc/group
+
+su [user]                                     # Cambiar de usuario
+adduser   [user]                         # Crear un usuario
+
+useradd -m [user]                      # Crear un usuario
+useradd -m -d /home/user -s /bin/bash user         # Crear un usuario completo
+passwd  [user]                           # Agregar clave al usuario
+
+userdel [user]                    # Elimina un usuario sin sus archivos
+userdel -r [user]                # Elimina un usuario con sus archivos
+
+groupadd  [group]             # Crea un grupo
+addgroup  [group]              # Crea un grupo
+groupdel   [group]              # Elimina un grupo
+
+adduser [user] [group]      # Agregar un usuario a un grupo
+
+
+# Permisos
+
+usermod -aG sudo [user]   # Añadir un usuario con permisos privilegiados
+
+chgrp [group] [path]                         # Cambia los permisos de grupos a un archivo o directorio
+chown -R [user]:[group] [path]        # Dar permisos al usuario user y grupo de forma recursiva
+chmod [signo Letra][path]               # Modifica los atributos de archivos y directorios
+
++   Establece un atributo.  
+-   Borra un atributo.
+r   Permisos de lectura       chmod +r  script.sh        chmod 400 script.sh
+w  Permisos de escritura    chmod +w script.sh       chmod 200 script.sh
+x  Permisos de ejecución    chmod +x script.sh       chmod 100 script.sh
+
+- - -       0     000                  
+- - x      1     001
+- w -     2     010
+- wx     3     011
+r - -      4     100
+r - x     5     101
+rw -     6     110
+r x w   7     111
+
+—-------------------------------------------------------------REDES---------------------------------------------
+
+
+lsoft -i : [puerto]       # Identifica el servicio corriendo por el puerto
+
+ping -c 4 [ip]             # Verifico si hay conexión enviando 4 paquete icmp
+
+netstat -nat               # Para ver las conexiones activas
+
+traceroute [ip]      # Verídico las rutas de mi red cuantos saltos de ips da hasta llegar a mi host
+
+nslookup [ip]             # Consultar servidores de nombres de dominio (DNS)
+
+route -n                         # Identifica la puerta de enlace
+
+route add default gw [gateway] # Añadir puerta de enlace 
+
+ip a                             # Ver las las conf de red , adaptadores ips, netmask
+
+ip link                        # Ver la configuración de mis adaptadores
+
+ip addr add  [ip]/24 broadcast [ip] dev [adaptador] # Añadir IP Netmask Broadcast
+
+ip route add default via [gateway]  # Añadir puerta de enlace 
+
+ip addr flush dev [adaptador]  # Elimina las configuraciones de red
+ifconfig [adaptador] [ip] netmask [ip] broadcast [ip]  # Añadir IP Netmask Broadcast
+
+iwconfig   # Muestra mis adaptadores inalámbricos y también configura la red
+
+sudo iwconfig  [adaptador] essid RED key s:CLAVE # No sirve para wpa2 solo wep
+
+sudo iwconfig [adaptador] essid off
+
+sudo iwlist [adaptador]  scan | grep ESSID      # Escanea mis redes wifi
+
+sudo iwlist scan | grep ESSID                           # Escanea mis redes wifi
+
+nmcli device                         # Muestra todos los adaptadores 
+
+nmcli device show               # Muestra todos los adaptadores
+
+nmcli device wifi                 # Escanea mis redes wifi
+
+nmcli device wifi list           # Escanea mis redes wifi
+
+nmcli device wifi connect RED password CLAVE
+
+nmcli device disconnect  [adaptador] 
+
+systemctl enable --now iwd
+[iwd]# device list
+[iwd]# station [adaptador] scan
+[iwd]# station [adaptador] get-networks
+iwctl --passphrase CLAVE station [adaptador]  connect RED # Para Arch
+[iwd]# station [adaptador] disconnect
+
+sudo dhclient -r  [adaptador]     # Libera y renueva la dirección IPv4 actualmente asignada por DHCP.
+       	                                                      
+# Apagar adaptadores
+ip link set [adaptador]  up | down # Prender o apagar el adaptador
+ifconfig [adaptador] up | down  # Prender o apagar el adaptador
+iwconfig  [adaptador] txpower on | off     # Prender o apagar el adaptador
+nmcli device up | down [adaptador]   # Prender o apagar el adaptador
+
+ip link set [adaptador] disable | enable   # Deshabilita, Deshabilita el adaptador
+ifconfig [adaptador] disable | enable      # Deshabilita, Deshabilita el adaptador
+nmcli device disable | enable [adaptador]   # Deshabilita, Deshabilita el adaptador
+nmcli device disconnect | connect  [adaptador] # Conecta o desconecta el adaptador con seguridad.
+
+
+#Ingresar por ssh desde el servidor gráfico para administrar los dispositivos usb cam
+
+ssh -X | -Y -p user@ip
+
+# X Con restricciones de seguridad
+# Y Sin restricciones de seguridad es para acceder completamente si conozco el equipo
+
+v4l-utils  # Paquete para verificar cámara
+
+v4l2-ctl --list-devices # Listar los dispositivos de video
+
+v4l2-ctl --device=/dev/video0 --set-ctrl=power_line_frequency=1
+
+cheese v4l2:///dev/video0 # Abrir con cheese
+
+cvlc v4l2:///dev/video0 # Abrir con vlc 
+
+
+
+—----------------------------------------------------SEGURIDAD-----------------------------------------------------
+
+# Firewall de Linux
+
+sudo ufw status                               # Permite ver el estado de los puertos
+sudo ufw reset                                  # Resetea de fabrica
+sudo ufw enable                               # Habilita el firewall
+sudo ufw disable                              # Deshabilita el fireawall
+sudo ufw allow [puerto]                   # Abre un puerto
+sudo ufw delete allow [puerto]        # Elimina un puerto
+sudo ufw deny [puerto]                    # Deniega un puerto
+
+who
+last  
+netstat -nat
+
+
+
+—-------------------------------------GESTIÓN DE PAQUETES Y SOFTWARE----------------------------
+
+#DEBIAN
+
+sudo apt update           	# Actualiza la lista de paquetes disponibles.
+sudo apt upgrade         	# Descarga e instala lista de paquetes disponibles.
+sudo apt search [paquete]	# Busca un paquete específico.
+sudo apt install [paquete]   # Instala el paquete
+sudo apt remove [paquete]	# Elimina el paquete sin archivos de configuración.
+sudo apt purge [paquete] 	# Elimina el paquete con archivos de configuración.
+sudo apt autoremove [paquete] # Elimina paquetes y dependencias innecesarias.
+sudo apt autoclean       	# 
+sudo apt clean           	# Elimina todos los paquetes de caché descargados.
+sudo apt list                  	# Lista todos los paquetes instalados.
+sudo dpkg -l              	# Lista todos los paquetes instalados utilizando dpkg.
+
+#FEDORA
+
+sudo dnf update          	  # Actualiza todos los paquetes instalados.
+sudo dnf upgrade         	 # Descarga e instala lista de paquetes disponibles.
+sudo dnf search [paquete]     # Busca un paquete específico.
+sudo dnf install [paquete]      # Instala el paquete 
+sudo dnf remove [paquete]    # Elimina el paquete 
+sudo dnf remove --purge [paquete] # Elimina el paquete con archivos de configuración.
+sudo dnf autoremove [paquete] # Elimina paquetes y dependencias innecesarias.
+                                                     # Elimina todos los paquetes de caché descargados.
+sudo dnf clean all      	      # Limpia la caché de paquetes descargados.
+sudo dnf list installed 	      # Lista todos los paquetes instalados.
+
+
+
+
+#ARCHLINUX
+
+sudo pacman -Sy                     	 # Actualiza la lista de paquetes disponibles.
+sudo pacman -Syu          		# Descarga e instala lista de paquetes disponibles.
+sudo pacman -Ss [paquete ]	# Busca un paquete específico en repositorios.
+sudo pacman -S [paquete] 	            # Instala el paquete 
+sudo pacman -R [paquete]   	# Elimina el paquete 
+sudo pacman -Rsn [paquete] 	 # Elimina el paquete con archivos de configuración.
+sudo pacman -Rs $(pacman -Qdtq) # Elimina paquetes y dependencias innecesarias.
+					   # Elimina todos los paquetes de caché descargados.
+sudo pacman -Sc         		 # Limpia la caché de paquetes descargados.
+sudo pacman -Q           		 # Lista todos los paquetes instalados.
+
+
+sudo update-grub                              	# Me actualiza el grub
+
+
+—-------------------------------------OTRAS ADMINISTRACIONES--------------------------------------
+
+lspci         # Me lista todos mis adaptadores pci
+
+lspci -k     # Me muestra los drivers de los adaptadores
+
+lsusb        # Me lista todos los adaptadores usb
+
+lsusb -t     # Me muestra los drivers de los adaptadores usb
+
+watch -d lsubs  # Me lista todos los dispositivos usb en tiempo real se se conectan o desconectan
+
+lscpu # Me lista información de la cpu
+
+lshw # Información del hardware
+
+lshw -html > info.html # Información del hardware
+
+lsmod       # para ver si está instalado los módulos de los controladores
+
+ dmesg   # Para ver los logs del inicio del sistema o kernel.
+
+dmesg - - clear  # Limpia los logs del kernel
+
+ journalct # Para ver los logs del inicio del sistema o kernel.
+
+sudo journalctl --rotate # Para borrar los logs del sistema.
+sudo journalctl --vacuum-time=1s
+
+sudo modprobe -r [firmware] && sudo modprobe [firmware] # Carga los módulos del firmware al kernel
+
+
+
+
+
+
+

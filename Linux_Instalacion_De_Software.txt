@@ -1,0 +1,154 @@
+﻿Instalación de software en Linux y configuracion
+
+
+.deb                 sudo dkpg -i archivo.deb
+
+.rum                 sudo ./archivo.run
+
+.AppImage       sudo ./archivo.AppImage
+
+.bundle             sudo ./archivo.bundle
+
+tar -zxvf archivo.tar.gz Descomprimir
+tar -cvzf archivo.tar.gz Comprimir
+
+tar -jxvf archivo.tar.bz2
+
+sudo apt install aliem
+sudo aliem -d archivo.rpm
+
+
+# Instalacion de Noisetorch
+
+1) Descargamos el archivo .tgz de https://github.com/noisetorch/NoiseTorch
+2) Aplicamos los siguientes comandos
+tar -C $HOME -h -xzf NoiseTorch_x64_v0.12.2.tgz
+gtk-update-icon-cache
+sudo setcap 'CAP_SYS_RESOURCE=+ep' ~/.local/bin/noisetorch
+3) Si no abre entrar desde la ternimal en la nuestro usurario
+ll o ls -a
+buscar la direccion .local/bin/noisetorch quizas copiar el archivo noisetorch a /bin
+y ejecutar ./noisetorch o ejecutar ./noisetorch dentro del nuestro usuario.
+
+
+
+# Configuracion de MariaDB
+
+sudo mysql_secure_installation
+
+Password to root (enter for none): n o enter     Password para root
+
+Switch to unix_socket authentication [Y/n] n    Cambiar autenticacion unix_socket
+
+Change the root password  [Y/n] n                   Cambiar la contraseña root
+
+Remove anonymous users?  [Y/n] y                 Eliminar los usuarios anonimos
+
+Disallow root login remotely  [Y/n] y                 No permitir loguearte como root remotamente
+
+Remove test database and access to it?  [Y/n] y   Eliminar la base de datos prueba y acceder a ella
+
+Reload privilege tables now?  [Y/n] y             Recargar las tablas de privilegios ahora
+
+
+# Crear la contraseña del usuario root
+
+GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+
+exit;
+
+# Actualizar la contraseña de un usuario
+
+
+opcion obsoleta                                                       opcion nueva
+SET PASSWORD FOR 'usuario'@'host' = 'nueva_contraseña';
+ALTER USER 'usuario'@'host' IDENTIFIED BY 'nueva_contraseña';
+FLUSH PRIVILEGES;
+
+exit;
+# Crear un usuario y dar privilegios
+
+CREATE USER 'newuser'@'localhost' IDENTIFIED BY 'password';
+
+GRANT ALL PRIVILEGES ON * . * TO 'newuser'@'localhost';
+
+FLUSH PRIVILEGES;
+
+exit;
+
+mysql –version
+
+mysql -u usuario -p 
+
+
+
+
+
+
+
+# Instalacion de Qemu
+Crear disco : qemu-img create -f qcow2 /home/user/hdd.tuquito.qcow2 20G
+Informacion del disco : qemu-img info hdd.tuquito.qcow2
+Arqueitectura: qemu-system-x86_64 
+Habilitar el virtualizador del kernel:  --enable-kvm 
+Nombre de la maquina : -name ‘Tuquito’
+Cpu Nucleos -smp 2
+Memoria Ram -m 2G
+Disco virtual: -hda hdd.tuquito.qcow2
+lectora o boot: -boot d -cdrom /ruta/de/la/imagen.iso
+
+
+Comando:
+
+qemu-img create -f qcow2 hdd.tuquito.qcow2 20G
+qemu-img info hdd.tuquito.qcow2
+
+qemu-system-x86_64 --enable-kvm -name 'Tuquito' -smp 1 -m 2G -hda hdd.tuquito.qcow2 -boot d -cdrom /mnt/Datos/PROGRAMAS/SistemasOperativos/Linux/Tuquito/Tuquito2.iso
+
+instalacion libvirt-manager
+
+sudo apt install cpu-checker
+
+kvm-ok
+
+apt install qemu-kvm libvirt-clients libvirt-daemon libvirt-daemon-system bridge-utilis virtinst virt-manager 
+
+sudo adduser user libvirt
+sudo adduser user libvirt-qemu
+
+
+#Descargar penguins-eggs.deb
+
+sudo apt update
+
+sudo apt install calamares
+
+sudo apt install grub-efi-amd64
+
+sudo eggs produce --basename Tuxito-OS --standard
+
+
+# editar el archivo yaml si hay un error de configuracion
+sudo nano /usr/lib/penguins-eggs/conf/derivatives.yaml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

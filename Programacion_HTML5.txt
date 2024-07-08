@@ -1,0 +1,37 @@
+﻿//Estructura Basica de un html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset= "UTF-8">
+<title>Titulo</title>
+<link rel="icono" href="/icono.png">
+</head>
+
+<body>
+  	<header>
+         	<h1>Encabezado</h1>
+  	</header>
+          	<nav>
+               	<ul>
+                   	<li>Home</li>
+                   	<li>^Productos</li>
+                   	<li>Sobre Nosotros</li>
+                   	<li>Contacto</li>
+              	</ul>
+        	</nav>
+
+ 	<main>
+       	<section>
+               	<article>
+               	</article>
+       	</section>
+ 	</main>
+
+ 	<aside>
+        	</article>
+ 	</aside>
+ 	<foter>
+ 	</foter>
+</body>
+</html>

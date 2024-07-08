@@ -1,0 +1,17 @@
+﻿COMANDOS VIM
+ Fecha: 04/01/24
+
+
+—-----------------------------------EDITOR DE CÓDIGO VIM-----------------------------------
+
+h ← izquierda
+j  ←  arriba
+k ← abajo
+l ← derecha
+
+Esc + x      # Borrar un caracter.
+Esc + dd    # Borra una linea
+
+i                 # Insertar
+
+

@@ -1,0 +1,220 @@
+﻿LOGICA DE PROGRAMACION EN PSEUDOCODIGO 
+--------------------------------------------------------------------------------------------
+1) VARIABLES
+
+Declarar o Definir      	Si tiene una palabra reservada o no y si es local o global.
+Nombre de la variable   	Asignamos un nombre.
+Tipo de datos           	Str, int , float, booleano, etc
+Valor                   	Asignamos el valor de la variable.
+
+Ejemplo: Dim Variable As Integer = 0
+
+----------------------------------------------------------------------------------------------
+2) OPERADORES
+
+ARITMETICOS
+
+suma          	+
+resta         	-
+multiplicacion	*
+division      	/
+division      	//
+potencia      	**
+raiz          	sqrt()
+modulo (resto)	%
+
+ASIGNACION
+
+variable =
+variable +=
+variable -=
+variable *=
+variable /=
+
+INCREMENTO Y DECREMENTO
+
+variable++            	Incrementa de a uno.
+variable--            	Iecrementa de a uno.
+++variable            	Incrementa de a uno antes de ser usada
+--variable            	Decrementa de a uno antes de ser usada.
+
+COMPARACION
+
+igual      	==
+identidad  	===
+distino    	!=
+mayor      	>
+menor      	<
+mayor igual	>=
+menor igual	<=
+
+LOGICOS
+
+and   
+or    
+not
+
+CONCATENACION +
+
+TERNACIOS
+
+
+------------------------------------------------------------------------------------------------------------
+
+3) ESTRUCTURAS DE CONTROL
+
+CONDICIONALES
+
+Condicional Simple if
+
+if a < b then
+   imprimo (a)
+
+Condicional Simple if else
+
+if a < b then
+ 	imprimo(a)
+else
+ 	imprimo(b)
+
+Condicional con else if
+
+if a < b then
+   imprimo(a)
+elseif  a > b
+   imprimo(b)
+
+Condicional multiple switch o select case
+
+Select case a
+  case 1:
+	imprimo(1)
+	break
+  case 2:
+	imprimo(2)
+	break
+  case 3:
+	imprimo(3)
+	break
+  default:
+	imprimo("Otro caso")
+	break
+
+--------------------------------------------------------------------------------------------
+
+Iterativas Repetitivas Bubles, o Loops
+
+FOR IN LISTA
+
+for i in variable
+    imprimo(i)
+
+FOR EACH
+
+for each i in lista
+  imprimo(i)
+
+
+FOR IN RANGO
+
+for i in range(7)
+    imprimo(i)
+
+FOR GENERICO
+
+for (i=0; i<7;i++){
+    imprimo(i)
+}
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+WHILE
+
+i = 0
+while i < 7
+    imprimo(i)
+    	i+=1
+
+WHILE SIN CONTADOR
+
+a = 0
+b = 7
+
+while a < b
+    imprimo("Hola Mundo")
+    	a = 7
+
+DO WHILE
+
+i = 0
+do {
+imprimo(i)
+i+=1
+} while i < 7
+    
+
+DO WHILE SIN CONTADOR
+
+a = 0
+b = 7
+do {
+imprimo("Hola Mundo")
+a = 7
+} while a < b
+------------------------------------------------------------------------------------------------    
+UNTIL
+
+i = 0
+until i > 7
+    imprimo(i)
+    	i+=1
+
+UNTIL SIN CONTADOR
+
+a = 0
+b = 7
+
+until a > b
+    imprimo("Hola Mundo")
+    	a = 7
+
+DO UNTIL
+
+i = 0
+do {
+imprimo(i)
+i+=1
+} until i > 7
+    
+
+DO UNTIL SIN CONTADOR
+
+a = 0
+b = 7
+do {
+imprimo("Hola Mundo")
+a = 7
+} until a > b
+
+-------------------------------------------------------------------------------------------------
+
+4) ARRAYS
+
+5) TUPLAS
+
+5) CONJUNTOS
+
+6) DICCIONARIOS
+
+7) FUNCIONES
+
+8) CLASES, OBJETOS
+
+9) ITERABLES
+
+
+
+
+
+
+

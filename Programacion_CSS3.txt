@@ -1,0 +1,101 @@
+﻿css
+
+
+-------------------SELECTORES------------------------------
+
+*          	           //Universal
+h1         	 //Tipo
+.           	 //Class
+#          	 //Id
+[a = "valor"]     //Por atributo
+h1 p       	// Asendiente
+h1: hove   	//Pseudoclase #Da un efecto de color al pasar el cursor
+
+-------------------ESPECIFICIDAD DE JERARQUIA----------------------------------------
+
+1- !important # Se pone despues del atributo css
+2- style="color:blue" # Estilos de linea
+3- Id
+4- class, pesudoclase, atributos
+5- elementos pseudoelementos
+
+-------------------BEN---------------------------------------------
+
+<h1 class="clase__uno"
+-------------------------------MEDIDAS--------------------------------------------------
+
+    RELATIVAS
+
+em # vale 16px
+vh # abarca toda la pantalla
+50%
+
+------------------------------PROPIEDADES DE TEXTO-------------------
+
+font-size: ;       	# Tamaño de lentra
+font-family: ;     	# Fuente
+font-weigth:normal;	# Grosor
+font-stretch:normal;   #
+font-variant: smaill-caps; #
+line-heigth:1.9 ;  	# alto de linea de letra
+
+--------------------PROPIEDADES DE CAJAS-------------------------
+
+background-color
+background
+color:
+display: inline                   // Funciona (width and height) para el bloque pero no para el inline.
+padding                               	# Cuando esta solo toma toda la caja
+padding 1px  	2px   3px	4px     	# Cuando el cuatro esta vacio toma el valor del segundo.
+padding-bottom -top -left -right  -
+margin
+margin-botton -top -left -right
+box-sizing:border-box                 	# Borde de caja
+text-aling:center                       	# Centra el texto
+border-radius:10px;                   	# Rendondea la caja
+border - width, color, style
+border: 4px solid  blue               	# Redondea en forma punteada.
+
+
+---------------------------------BOX MODEL-------------------------------------------------------
+content line-height
+padding
+border
+margin
+----------------------------------------------------------------------------------------------------------
+
+box-shadow: px px px #color;  #sombrea una caja
+text-shadow:px px px #color;  # Sombre el texto de la caja.
+transform:rotate(45deg);  	# Rota por grados
+margin:auto;              	# Centra la caja.
+
+----------------------------------OUTLINE-----------------------------------------------------------------
+----------------------------------POSITION----------------------------------------------------------------
+
+
+text-decoration: none; /*Para quitar el subrayado de las listas*/
+	list-style: none; /*Para quitar los puntitos*/
+
+#Elementos inline
+a, span, img, b, i, small, cite, code, em, strong, br, sript
+button, imput, label, select, textarea.
+
+#Elementos block
+div, article, section, header, footer, aside, table, p, video
+ul, ol, todos los h.
+
+
+
+	text-align: center; se utiliza para alinear el texto y los elementos en el centro horizontal de su contenedor. Esta propiedad solo se aplica a elementos que contienen texto o elementos en línea y no funciona en elementos de bloque.
+
+	justify-content: center; se utiliza para alinear horizontalmente los elementos de un contenedor se aplica al contenedor y no al contenido.
+
+	justify-content: space-between; se utiliza para distribuir los elementos en el contenedor con un espacio igual entre ellos
+
+	justify-items: center; se utiliza para alinear horizontalmente los elementos dentro de su contenedor. Esta propiedad se aplica a los elementos de cuadrícula y controla la alineación horizontal de los elementos en su celda.
+
+
+
+
+
+

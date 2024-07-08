@@ -1,0 +1,64 @@
+﻿-----------REPARAR EL GRUB DE LINUX------------------------
+
+sudo add-apt-repository ppa:yannubuntu/boot-repair
+sudo apt-get update
+sudo apt-get install -y boot-repair
+boot-repair
+
+-----------REPARAR EL GRUB DUAL------------------------------
+
+Error : unknow filesystem
+Entering rescue mode
+Grub rescue >
+
+ls (hasta encontrar el que tenga partición ext2)
+(hd0,gpt numero): filesystem is ext2
+set boot=(hd0,gpt numero)
+set prefix=(hd0,gpt numero)/boot/grub
+insmod normal
+normal
+exit.
+
+ OPCION 2
+
+ls (hasta encontrar el que tenga partición ext2)
+(hd0,msdos numero): filesystem is ext2
+set boot=(hd0,msdos numero)
+set prefix=(hd0,msdos numero)/boot/grub
+insmod normal
+normal
+exit.
+
+-----------SOLUCIONAR EL PROBLEMA DEL WORKER----------------------
+#Eliminar el proceso kworker # hacer esto como root
+grep . -r /sys/firmware/acpi/interrupts/
+crontab -e
+@reboot echo "disable" > /sys/firmware/acpi/interrupts/gpe13
+~ touch /etc/pm/sleep.d/30_disable_gpe13
+~ chmod +x /etc/pm/sleep.d/30_disable_gpe13
+~ vim /etc/pm/sleep.d/30_disable_gpe13
+#!/bin/bash
+case "$1" in
+	thaw|resume)
+    	echo disable > /sys/firmware/acpi/interrupts/gpe13 2>/dev/null
+    	;;
+	*)
+    	;;
+esac
+exit $?
+-----------------------------------------------------------------------
+
+repositorios y reparar Grub
+sudo add-apt-repository -y ppa:yannubuntu/boot-repair
+sudo apt-get update
+sudo apt-get install -y boot-repair && boot-repair
+
+—---------------------------------------------------------------------------------------------------------------
+
+Actualizar el las cabeceras del Kernel para virtualizar.
+
+sudo apt-get install build-essential
+sudo apt-get install linux-headers-$(uname -r)
+sudo /sbin/vboxconfig
+
+—--------------------------------------------------------------------------------------------------------------------

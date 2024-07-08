@@ -1,0 +1,109 @@
+﻿BASE DE DATOS -SQL   17-02-24
+
+Exportar
+mysqldump -u root -p ejemplo > ejemplo.sql
+
+Importar
+
+mysql -u root -p ejemplo < ejemplo.sql
+
+mysql - - version
+
+sudo /opt/lampp/lampp start
+
+sudo /opt/lampp/lampp startmysql
+sudo /opt/lampp/lampp startapache
+
+sudo /opt/lampp/bin/mysql -u root -p
+
+mysql -u usuario -p 
+
+SHOW DATABASES;
+
+SHOW TABLES;
+
+USE NOMBRE_TABLA ;
+
+SHOW COLUMNS FROM  NOMBRE_TABLA;
+
+CREATE TABLE Clientes (
+	id_cliente INT PRIMARY KEY,
+	nombre VARCHAR (225),
+	pedidos VARCHAR (255),
+            id_pedidos INT,
+	FOREIGN KEY (id_pedidos) REFERENCES Pedidos (id_pedidos)
+);
+
+RENAME TABLE Cientes TO Clientes;
+
+DROP DATABASE MiBD ;
+
+ALTER TABLE Pedidos ADD COLUMN id_vendedor INT;
+
+ALTER TABLE Pedidos
+ADD CONSTRAINT id_vendedor FOREIGN KEY (id_vendedor)
+REFERENCES Vendedor (id_vendedor);
+
+
+
+ALTER TABLE Clientes ADD FOREING KEY (id_nuevo)
+REFERENCE Nuevo (id_nuevo);
+
+ALTER TABLE Clientes
+MODIFY COLUMN nombre, tel VARCHAR (225);
+
+ALTER TABLE Clientes
+DROP COLUMN nombre;
+
+DROP TABLE Clientes;
+
+SELECT * FROM Clientes;
+
+SELECT * FROM Clientes
+ORDER BY nombre ASC|DESC;
+
+SELECT nombre , edad
+FROM Clientes
+WHERE nombre = ‘Juan’, edad = 36;
+
+
+
+SELECT nombre , edad
+FROM Clientes
+WHERE nombre = ‘Juan’ , AND edad > 18;
+
+SELECT * FROM Clientes
+WHERE nombre LIKE ‘J%’ OR nombre LIKE ‘%J’;
+
+SELECT * FROM Clientes
+WHERE Ciudad IN (‘Corrientes’ , ‘Resistencia’);
+
+SELECT * FROM Clientes
+WHERE edad BETWEN 18 AND 40;
+
+SELECT * FROM Clientes
+WHERE edad NOT BETWEN 18 AND 40;
+
+INSTERT INTO Clientes (nombre, edad)
+VALUES (‘Carlos’, 36);
+
+UPDATE Clientes
+SET nombre = ‘Marcos’, edad= 37
+WHERE nombre = ‘Carlos’;
+
+DELETE FROM Clientes
+WHERE nombre = ‘Carlos’;
+
+DELETE FROM Clientes;
+
+DELETE * FROM Clientes;
+
+VAR ( MAX, MIN, COUNT, AVG)
+
+SELECT VAR (Precio)
+FROM Productos
+WHERE Condition;
+
+system clear; 
+
+

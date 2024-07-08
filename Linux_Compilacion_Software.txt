@@ -1,0 +1,23 @@
+﻿#Paquetes de compilación kernel
+
+libssl1.1 ev -y
+
+
+
+
+
+sudo apt-get install build-essential flex bison openssl autoconf dwarves ncurses-dev libssl-dev libelf-dev libncurses5-dev libdw-dev binutils-dev libiberty-dev debhelper linux-source bc kmod cpio dkms libncurses-dev libssl-dev libelf-dev liblz4-tool libncurses5-dev
+
+
+
+make localmodconfig 
+make menuconfig
+sudo make -j$(nproc) bindeb-pkg
+
+sudo /sbin/vboxconfig
+
+
+
+¿que son estos paquetes , describime uno por uno y para que sirve?
+
+
