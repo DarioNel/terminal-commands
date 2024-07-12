@@ -147,7 +147,7 @@ docker build -t name_img .  # Crea una imagen de mi archivo Dockerfile y lo ejec
 
 Jellyfin
 
-sudo docker create --name jellyfin -p80:8096 -v jellyfin-config:/config -v jellyfin-cache:/cache --mount type=bind,source=/home/server/jellyfin,target=/media  --restart=unless-stopped jellyfin/jellyfin 
+sudo docker run -d --name jellyfin -p80:8096 -v jellyfin-config:/config -v jellyfin-cache:/cache --mount type=bind,source=/home/server/jellyfin,target=/media  --restart=unless-stopped jellyfin/jellyfin 
 
 Postges 
 

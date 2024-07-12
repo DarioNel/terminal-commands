@@ -50,7 +50,7 @@ CRACKMAPEXEC
 crackmapexec smb [ip]
 
 
- SMBMAP 
+SMBMAP 
 smbmap -H [ip] -u ‘user’  -p ‘pass’
 smbmap -H [ip] -u 'null'
 smbmap -H [ip] -r /share
@@ -106,7 +106,7 @@ FASE DE REPORTES, INFORMES Y DOCUMENTACIÓN
 ---------------------------------------------------------------------------------------------------------------
 
 
-
+hydra -l user -P /usr/share/wordlists/rokyou.txt protocolo://IP
 
 
 
