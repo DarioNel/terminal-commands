@@ -142,6 +142,8 @@ ls -lh | grep  “file.txt”     # Permite filtrar por el nombre que ponemos
 
 cat file.txt | set ‘s/hola/hola2/’ Remplaza hola por hola2 en el archivo
 
+wc -l file.txt # Cuenta la cantidad de lineas que tiene
+
 find / -name '*file*' -print  # Buscar todos los archivos con ese nombre
 # Para entrar en el PATH
 

@@ -31,7 +31,7 @@ PermitEmptyPasswords no
 ssh -D[port/proxy] -p[port] server@IP # Utilizo mi servidor como proxy para usar su trafico, para eso configurar mi navegador
 agregando el puerto que cree en -D[port/proxy] y poner localhost
 
-ssh -X ssh -p[port] user@IP  # Para usar aplicaciones graficas del servidor desde mi host
+ssh -X ssh -p[port] user@IP [app] # Para usar aplicaciones graficas del servidor desde mi host
 
 ssh -j IP-Server1:[port] -p[port] user@IP-Server2 # Accedo de un servidor ssh a otro en un solo comando
 
