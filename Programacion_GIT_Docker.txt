@@ -14,102 +14,100 @@ true > Windows
     3. Git Repository # Archivos donde los cambios ya se confirmaron a través de un commit listo para subir a un repositorio remoto con un push
 
 
-git status                                                # Vemos el estado
-git init                                                     # Iniciamos git
-git branch -M main | master                   # Seleccionamos una rama
+git status                                                     # Vemos el estado
+git init                                                       # Iniciamos git
+git branch -M main | master                                    # Seleccionamos una rama
 git remote add origin https://github.com/userl/proyecto.git    # Añadimos a nuestro repo	
-git add file.txt                                          # Añadimos un archivo a la zona stage
-git commit -m “primer commit”               # Confirmamos, y pasamos al repositorio local
-git push -u origin main | master              # Subimos a nuestro repositorio remoto
-git log                                                      # Vemos el registro
-git log - - oneline # Vemos los registros resumidos en una sola línea
-
-git restore file.txt                                   # Restaura los cambios y lo añade a la zona de staging y workingdirectory según el caso
-git restore - - stage file.txt                     #  Restaura y lo quita de la zona de staging
+git add file.txt                                               # Añadimos un archivo a la zona stage
+git commit -m “primer commit”                                  # Confirmamos, y pasamos al repositorio local
+git push -u origin main | master                               # Subimos a nuestro repositorio remoto
+git log                                                        # Vemos el registro
+git log - - oneline                                            # Vemos los registros resumidos en una sola línea
+git restore file.txt                                           # Restaura los cambios y lo añade a la zona de staging y workingdirectory según el caso
+git restore - - stage file.txt                                 #  Restaura y lo quita de la zona de staging
 
 git restore - - stage - - worktree file.txt  #  Restaura  y lo reescribe en la zona de workingdirectory
 
 git restore - - source [commit] file.txt     # Restaura al commit seleccionado 
 
-git checkout filet.txt           # Vuelve a una versión anterior del último commit
+git checkout filet.txt                       # Vuelve a una versión anterior del último commit
 git checkout [commit]
 
-git reset file.txt                   #        
-git reset --soft [commit]      # Regresa al commit seleccionado, borra los anteriores y los cambios del archivo los añade al staging area
+git reset file.txt         #        
+git reset --soft [commit]  # Regresa al commit seleccionado, borra los anteriores y los cambios del archivo los añade al staging area
 
-git reset --mixed [commit]  # Regresa al commit seleccionado, borra los anteriores y los cambios del archivo los elimina del staging area y del repositorio local .git
+git reset --mixed [commit] # Regresa al commit seleccionado, borra los anteriores y los cambios del archivo los elimina del staging area y del repositorio local .git
 
-git reset --hard [commit]    # Regresa al commit seleccionado, borra los anteriores y los cambios del archivo los elimina del workingdirectory,  staging area y del repositorio local .git
+git reset --hard [commit]  # Regresa al commit seleccionado, borra los anteriores y los cambios del archivo los elimina del workingdirectory,  staging area y del repositorio local .git
 
 
-git revert [commit]  # Me permite volver a una versión anterior a través de su commit
+git revert [commit]        # Me permite volver a una versión anterior a través de su commit
 git reflog                 # Me permite ver los commits eliminados
 
 git diff file.txt           # Me muestra las modificaciones sobre un archivo que estaba en el area de stage y lo vuelvo a modificar
 
-git branch                                                          # Nos dice en qué rama estamos
-git branch nueva_rama                                     # Creamos una rama
-git branch -m rama1 rama2                              # Cambiamos el nombre de la rama
-git branch -d rama1                                          # Eliminamos una rama
-git checkout main | master                               # Cambiamos de rama
-git diff rama1 rama2                       # Me muestra las diferentes versiones de mis archivos
-git merge rama1 rama2                 # Unifica los archivos de las ramas1 y rama2
-git pull origin main | master            # Descargamos de nuestro repositorio remoto al local
+git branch                      # Nos dice en qué rama estamos
+git branch nueva_rama           # Creamos una rama
+git branch -m rama1 rama2       # Cambiamos el nombre de la rama
+git branch -d rama1             # Eliminamos una rama
+git checkout main | master      # Cambiamos de rama
+git diff rama1 rama2            # Me muestra las diferentes versiones de mis archivos
+git merge rama1 rama2           # Unifica los archivos de las ramas1 y rama2
+git pull origin main | master   # Descargamos de nuestro repositorio remoto al local
 git clone https://github.com/userl/proyecto.git   # Clonamos todo nuestro repositorio
 
 
 
 Docker 
 
-create
-run
--d
---name
--p
---network
--v
--e
---restart=alwals
-imagen
+docker create | run -d --name -p --network -v -e --restart= imagen
 
 # Imágenes
 
-docker images                             # Listar todas las imágenes
-docker search [img]                     # Busca imágenes en docker hub
-docker pull [img]                          # Descarga la ultima vers de una imagen
-docker pull [img]:2.8                    # Descarga una versión de la imagen 
-docker image rm  [img]                # Borrar una imagen
-docker rmi  [img]                          # Borrar una imagen
+docker images                 # Listar todas las imágenes
+docker search [img]           # Busca imágenes en docker hub
+docker pull [img]             # Descarga la ultima vers de una imagen
+docker pull [img]:2.8         # Descarga una versión de la imagen 
+docker image rm  [img]        # Borrar una imagen
+docker rmi  [img]             # Borrar una imagen
 
 # Contenedores
 
-docker ps                                              # Listar los contenedores activos
-docker ps -a                                          # Listar los contenedores activos y no activos
-docker ps -aq                                        # Listar los las IDs de todos contenedores
-docker start  [container]                       # Iniciar un contenedor
-docker stop  [container]                       # Detener un contenedor
+docker ps                        # Listar los contenedores activos
+docker ps -a                     # Listar los contenedores activos y no activos
+docker ps -aq                    # Listar los las IDs de todos contenedores
+docker start  [container]        # Iniciar un contenedor
+docker stop  [container]         # Detener un contenedor
 
-docker container create [img]    #Crea un contenedor a partir la la ultima vers de una imagen
-docker create [img]:2.8               #Crea un contenedor a partir de la vers 2.8 de una imagen
-docker create --name [name] [img]  # Poner un nombre a un contenedor usando una imagen
-docker rm  [container]                          # Borrar un contenedor
-docker volume inspect [container] 
+docker container create [img]     # Crea un contenedor a partir la la ultima vers de una imagen
+docker create [img]:2.8           # Crea un contenedor a partir de la vers 2.8 de una imagen
+docker create --name [name] [img] # Poner un nombre a un contenedor usando una imagen
+docker rm  [container]            Borrar un contenedor
+docker inspect [container]        # Inspecciona las caracteristicas del contenedor
 
 docker commit [container] [img]:latest  # Guardar los cambios en un nuevo contenedor y crea una imagen nueva con los cambios.
 
-docker exec -it  [container] bash   # Ingresa al linux del contenedor de la app
+docker exec -it  [container] bash       # Ingresa al linux del contenedor de la app
 
-docker run -d  [img]   # Descarga la imagen, crea y enciende el contenedor
+docker run -d  [img]                    # Descarga la imagen, crea y enciende el contenedor
 
-docker run -d --rm [img]   # Descarga la imagen, crea, enciende el contenedor y lo elimina cuando de deja de utilizar.
+docker run -d --rm [img]                # Descarga la imagen, crea, enciende el contenedor y lo elimina cuando de deja de utilizar.
 
-docker run -d [img] -p8080:80   # Sale por el puerto 8080 de mi host
+docker run -d [img] -p8080:80           # Sale por el puerto 8080 de mi host
 
+docker update --restart=[opcions][container]
 
-docker volume ls                                        # Me lista los volúmenes 
-docker volume rm                                       # Elimina un volumen 
-docker volume create   [vol]                     # Crea un volumen
-docker volume inspect  [vol]  
+[opcions]
+
+--restart=alwals
+--restart=unless-stopped
+
+# Volumenes
+
+docker volume ls                        # Me lista los volúmenes 
+docker volume rm                        # Elimina un volumen 
+docker volume create   [vol]            # Crea un volumen
+docker volume inspect  [vol]  # Inspecciona las caracteristicas del volumen.
 
 docker run -d -v --mount src=vol,dst:/path/to/app [img]
 
@@ -117,12 +115,14 @@ docker run -d -v /path/to/host/:/path/to/app [img]
 
 --mount type=bind                               # Montar de tipo bind los volumenes
 
-docker network ls                               # Me lista las redes
+# Redes
+
+docker network ls                       # Me lista las redes
 docker network create [name]            # Crea una red con un nombre
-docker network rm [name]                  # Elimina una red
+docker network rm [name]                # Elimina una red
 docker network inspect [name]  
 docker run network create [name] --subnet 192.168.0.0 --gateway 192.168.0.1 
-docker run --network [name] bridge [img]      # Crea un contenedor con una red con la ip de mi host
+docker run --network [name] bridge [img]  # Crea un contenedor con una red con la ip de mi host
 docker run --network [name] host [img] 
 docker run --network [name] none [img] 
 
@@ -140,33 +140,32 @@ EXPOSE [puerto] # Expone un puerto
 
 CMD [ “bash”, “/media/datos/script.sh”] # Ejecuta una aplicación
 
--------------------------------------------------------------------------
 docker build -t name_img .  # Crea una imagen de mi archivo Dockerfile y lo ejecuta
 
-
+-----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Jellyfin
 
-sudo docker run -d --name jellyfin -p80:8096 -v jellyfin-config:/config -v jellyfin-cache:/cache --mount type=bind,source=/home/server/jellyfin,target=/media  --restart=unless-stopped jellyfin/jellyfin 
+sudo docker run -d --name jellyfin -p80:8096 --network red1 -v jellyfin-config:/config -v jellyfin-cache:/cache --mount type=bind,source=/home/user/containers/jellyfin,target=/media --restart=unless-stopped jellyfin/jellyfin 
 
 Postges 
 
-sudo docker run -d --name SQLlpostgres -p5432:5432 --network red1 -e POSTGRES_USER=your-user -e POSTGRES_PASSWORD=1234 -e POSTGRES_DB=mi-db -v /home/user/containers/postgres:/var/lib/postgresql/data/ postgres
+sudo docker run -d --name PostgresSQL -p5432 --network red1 -v vol-postgres:/var/lib/postgresql/data/ -e POSTGRES_USER=user -e POSTGRES_PASSWORD=1234 -e POSTGRES_DB=mi-db postgres
 
 Pgadmin
 
-sudo docker run -d --name Pgadmin -p80:80 --network red1  -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=1234 elestio/pgadmin
+sudo docker run -d --name Pgadmin -p80:80 --network red1 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=1234 elestio/pgadmin
 
 Mariadb
 
-sudo docker run -d --name MariaDB --network red1 -v /home/user/container/:/var/lib/mysql -e MARIADB_ROOT_PASSWORD=1234 --restart=always mariadb
+sudo docker run -d --name MariaDB -p3306 --network red1 -v vol-mariadb:/var/lib/mysql -e MARIADB_ROOT_PASSWORD=1234 mariadb
 
 Phpmyadmin
 
-sudo docker run -d --name Phpmyadmin -p80:80 --network red1 -e PMA_HOST=MariaDB phpmyadmin
+sudo docker run -d --name Phpmyadmin -p81:80 --network red1 -e PMA_HOST=MariaDB phpmyadmin
 
 Microsoft SQL Server
 
-sudo docker run -d --name MicrosoftSQL -p 1433:1433 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Hola1234#" mcr.microsoft.com/mssql/server:2022-latest
+sudo docker run -d --name MicrosoftSQL -p 1433:1433 -v vol-mssql:/var/opt/mssql -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Hola1234#" mcr.microsoft.com/mssql/server:2022-latest
 
 
