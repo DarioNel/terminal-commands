@@ -16,17 +16,36 @@ sudo apt install ssh # Para instalar el servidor  ssh
 
 sudo apt install openssh-server # Para instalar el servidor ssh (Opcion2)
 
+# Configuracion de seguridad del archivo de configuracion de ssh
+
+sudo nano /etc/ssh/sshd_config # Archivo de configuración, cambiar puerto.
+
+# Authentication:
+
+#LoginGraceTime 1m   # Solo intentar autenticarse por 1 min
+#PermitRootLogin prohibit-password  # Dejar comentada
+PermitRootLogin no                  # No dejar iniciar como Root
+#MaxAuthTries 3                     # Hasta 3 intentos
+#MaxSessions 4                      # Hasta 4 sessiones
+
+PubkeyAuthentication yes            # Admitir entrar con clave publica
+PasswordAuthentication yes          # Permitir contraseña para autenticar
+PermitEmptyPasswords no             # No ingresar sin contraseña
+
+
 ssh -p[port] user@IP    # Para conectarme al servidor desde el PC cliente
 
 ssh-keygen # Para generar una llave publica en /home/user/.ssh
 
 ssh-copy-id -p [port] user@IP # Esto copiara la llave en el servidor en /home/user/.ssh/authorized_keys
 
-sudo nano /etc/ssh/sshd_config # Archivo de configuración, cambiar puerto.
+# Para windows copiar la clave publica del cliente al servidor  C:\ProgramData\ssh> con este nombre
+administrators_authorized_keys si el usuario pertenece al grupo de administradores y ejecutar estos comandos.
 
-PermitEmptyPasswords no 
-#PermitRootLogin prohibit-password
-#PermitRootLogin no
+icacls administrators_authorized_keys /inheritance:r
+icacls administrators_authorized_keys /grant SYSTEM:`(F`)
+
+# Para Usuarios no administradores copiar la clave publica en  C:\Users\sala\.ssh> con este nombre authorized_keys
 
 ssh -D[port/proxy] -p[port] server@IP # Utilizo mi servidor como proxy para usar su trafico, para eso configurar mi navegador
 agregando el puerto que cree en -D[port/proxy] y poner localhost
@@ -44,6 +63,11 @@ al que quiero acceder seguido de mi localhost
 ssh -R [remote/port]:Ip:[port] -p[port] user@IP # Abro un puerto ssh en el servidor remoto
 ingreso la ip y el puerto del servidor que quiero acceder
 
+Descargar archivos por ssh # Todo se hace desde la terminal cliente
+
+scp -r -P [port] client.txt user@IP:/home/server  # Del host al servidor
+
+scp -r -P [port] user@IP:/home/server/client.txt  /home/client/  # Del servidor al host
 
 nano ./ssh/config  # Crear un script para acceder con un alias a servidores ssh
 
@@ -58,14 +82,6 @@ Host [servidor2]
 Hostname [IP]
         User [name]
         Port [port]
-
-Descargar archivos por ssh # Todo se hace desde la terminal cliente
-
-scp -r -P [port] client.txt user@IP:/home/server  # Del host al servidor
-
-scp -r -P [port] user@IP:/home/server/client.txt  /home/client/  # Del servidor al host
-
-
 
 -------------------------------------------CONEXIÓN POR NETCAT-------------------------------------------
 

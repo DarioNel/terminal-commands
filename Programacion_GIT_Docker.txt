@@ -168,4 +168,4 @@ Microsoft SQL Server
 
 sudo docker run -d --name MicrosoftSQL -p 1433:1433 -v vol-mssql:/var/opt/mssql -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Hola1234#" mcr.microsoft.com/mssql/server:2022-latest
 
-
+user : sa
