@@ -89,14 +89,23 @@ mysql -u usuario -p
 
 
 # Instalacion de Qemu
+
 Crear disco : qemu-img create -f qcow2 /home/user/hdd.tuquito.qcow2 20G
+
 Informacion del disco : qemu-img info hdd.tuquito.qcow2
+
 Arqueitectura: qemu-system-x86_64 
+
 Habilitar el virtualizador del kernel:  --enable-kvm 
+
 Nombre de la maquina : -name ‘Tuquito’
+
 Cpu Nucleos -smp 2
+
 Memoria Ram -m 2G
+
 Disco virtual: -hda hdd.tuquito.qcow2
+
 lectora o boot: -boot d -cdrom /ruta/de/la/imagen.iso
 
 
@@ -129,6 +138,33 @@ sudo virsh net-autostart default
 sudo adduser user libvirt
 sudo adduser user libvirt-qemu
 
+# Modo puente qemu kvm virt-manager
+Crear un adaptador vitual br0 modo puente
+
+nmcli con add ifname br0 type bridge con-name br0
+nmcli con add type bridge-slave ifname [adp] master br0
+nmcli con show
+nmcli con modify br0 bridge.stp no
+nmcli con show
+
+
+nmcli con down [red wifi activa]
+nmcli con up br0
+nmcli con show
+
+
+nano /tmp/br0.xml
+<network>
+<name>Puente</name>
+<forward mode="bridge"/>
+<bridge name="br0"/>
+</network>
+
+virsh net-define /tmp/br0.xml
+virsh net-start Puente
+virsh net-autostart Puente
+virsh net-list --all
+--------------------------------------------------------------------------------------------------
 
 #Descargar penguins-eggs.deb
 

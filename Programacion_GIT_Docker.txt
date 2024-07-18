@@ -146,23 +146,23 @@ docker build -t name_img .  # Crea una imagen de mi archivo Dockerfile y lo ejec
 
 Jellyfin
 
-sudo docker run -d --name jellyfin -p80:8096 --network red1 -v jellyfin-config:/config -v jellyfin-cache:/cache --mount type=bind,source=/home/user/containers/jellyfin,target=/media --restart=unless-stopped jellyfin/jellyfin 
+sudo docker run -d --name LANjellyfin -p 80:8096 -v jellyfin-config:/config -v jellyfin-cache:/cache --mount type=bind,source=/home/user/containers/vol-jellyfin,target=/media --restart=unless-stopped jellyfin/jellyfin 
 
 Postges 
 
-sudo docker run -d --name PostgresSQL -p5432 --network red1 -v vol-postgres:/var/lib/postgresql/data/ -e POSTGRES_USER=user -e POSTGRES_PASSWORD=1234 -e POSTGRES_DB=mi-db postgres
+sudo docker run -d --name PostgresSQL -p 5432:5432 -v vol-postgres:/var/lib/postgresql/data/ -e POSTGRES_USER=user -e POSTGRES_PASSWORD=1234 -e POSTGRES_DB=mi-db postgres
 
 Pgadmin
 
-sudo docker run -d --name Pgadmin -p80:80 --network red1 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=1234 elestio/pgadmin
+sudo docker run -d --name Pgadmin -p 80:80 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=1234 elestio/pgadmin
 
 Mariadb
 
-sudo docker run -d --name MariaDB -p3306 --network red1 -v vol-mariadb:/var/lib/mysql -e MARIADB_ROOT_PASSWORD=1234 mariadb
+sudo docker run -d --name MariaDB -p 3306:3306 -v vol-mariadb:/var/lib/mysql -e MARIADB_ROOT_PASSWORD=1234 mariadb
 
 Phpmyadmin
 
-sudo docker run -d --name Phpmyadmin -p81:80 --network red1 -e PMA_HOST=MariaDB phpmyadmin
+sudo docker run -d --name Phpmyadmin -p 81:80 -e PMA_HOST=MariaDB phpmyadmin
 
 Microsoft SQL Server
 
