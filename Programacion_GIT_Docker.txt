@@ -95,6 +95,8 @@ docker run -d --rm [img]                # Descarga la imagen, crea, enciende el 
 
 docker run -d [img] -p8080:80           # Sale por el puerto 8080 de mi host
 
+docker run -d -it [img-linux] bash      # Ingresa al linux del contenedor si la imagen es un linux 
+
 docker update --restart=[opcions][container]
 
 [opcions]
@@ -111,9 +113,9 @@ docker volume inspect  [vol]  # Inspecciona las caracteristicas del volumen.
 
 docker run -d -v --mount src=vol,dst:/path/to/app [img]
 
-docker run -d -v /path/to/host/:/path/to/app [img]
+docker run -d -v /path/to/host/:/path/to/app [img] --mount type=bind # Montar de tipo bind los volumenes
 
---mount type=bind                               # Montar de tipo bind los volumenes
+
 
 # Redes
 
@@ -126,7 +128,7 @@ docker run --network [name] bridge [img]  # Crea un contenedor con una red con l
 docker run --network [name] host [img] 
 docker run --network [name] none [img] 
 
-# Creación del archivo Dockerfile
+# Creación del archivo Dockerfile, sirve para crear una imagen personalizada a partir de otra imagen.
 
 FROM [img]   # Crea un contenedor a partir de una imagen
 
@@ -134,7 +136,7 @@ RUN  [comandos] # Permite ejecutar comandos
 
 WORKDIC [RUTA] # Permite ir a una ruta similar a CD en linux
 
-COPY [RUTA] Copia los archivos de mi maquina al contenedor
+COPY .[RUTA] Copia los archivos de mi maquina al contenedor
 
 EXPOSE [puerto] # Expone un puerto 
 
@@ -169,3 +171,37 @@ Microsoft SQL Server
 sudo docker run -d --name MicrosoftSQL -p 1433:1433 -v vol-mssql:/var/opt/mssql -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Hola1234#" mcr.microsoft.com/mssql/server:2022-latest
 
 user : sa
+----------------------------------------------------------------------------------------------------------------
+Apache - php
+
+nano Dockerfile
+
+FROM php:7.2-apache
+
+COPY ./vol-my-proyects/ /var/www/html/
+
+docker build -t apache-php .
+docker run -d --name Apache-PHP -p 80:80 -v /home/linux/VM/docker/vol-my-proyects:/var/www/html apache-php-img
+
+FROM ubuntu
+
+RUN apt update 
+
+RUN apt upgrade -y
+
+RUN apt install php apache2 -y
+
+COPY ./vol-my-proyects/ /var/www/html/
+
+RUN chown -R www-data:www-data /var/www/html/
+
+RUN chmod -R 755 /var/www/html/
+
+EXPOSE 80
+
+
+docker build -t ubuntu-apache-php .
+docker run -d --name U-Apache-PHP -p 80:80 -v /home/linux/VM/docker/vol-my-proyects:/var/www/html -it ubuntu-apache-php bash
+
+
+

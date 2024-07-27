@@ -22,11 +22,11 @@ sudo nano /etc/ssh/sshd_config # Archivo de configuración, cambiar puerto.
 
 # Authentication:
 
-#LoginGraceTime 1m   # Solo intentar autenticarse por 1 min
+LoginGraceTime 1m   # Solo intentar autenticarse por 1 min
 #PermitRootLogin prohibit-password  # Dejar comentada
 PermitRootLogin no                  # No dejar iniciar como Root
-#MaxAuthTries 3                     # Hasta 3 intentos
-#MaxSessions 4                      # Hasta 4 sessiones
+MaxAuthTries 3                     # Hasta 3 intentos
+MaxSessions 4                      # Hasta 4 sessiones
 
 PubkeyAuthentication yes            # Admitir entrar con clave publica
 PasswordAuthentication yes          # Permitir contraseña para autenticar
@@ -43,7 +43,9 @@ ssh-copy-id -p [port] user@IP # Esto copiara la llave en el servidor en /home/us
 administrators_authorized_keys si el usuario pertenece al grupo de administradores y ejecutar estos comandos.
 
 icacls administrators_authorized_keys /inheritance:r
-icacls administrators_authorized_keys /grant SYSTEM:`(F`)
+icacls administrators_authorized_keys /grant administrators:f
+administrators_authorized_keys /grant *S-1-5-32-544:F (si no funciona administrators, usar este)
+icacls administrators_authorized_keys /grant system:f
 
 # Para Usuarios no administradores copiar la clave publica en  C:\Users\sala\.ssh> con este nombre authorized_keys
 
