@@ -136,7 +136,10 @@ RUN  [comandos] # Permite ejecutar comandos
 
 WORKDIC [RUTA] # Permite ir a una ruta similar a CD en linux
 
-COPY .[RUTA] Copia los archivos de mi maquina al contenedor
+COPY .[RUTA_HOST] [RUTA_CONT] #Copia los archivos de la ruta de mi maquina al contenedor que apunta
+en WORKDIC
+ 
+COPY .  . # O Tambien si estoy en mi directorio del proyecto digo con punto que copie todo a la ruta del contenedor.
 
 EXPOSE [puerto] # Expone un puerto 
 
@@ -181,7 +184,7 @@ FROM php:7.2-apache
 COPY ./vol-my-proyects/ /var/www/html/
 
 docker build -t apache-php .
-docker run -d --name Apache-PHP -p 80:80 -v /home/linux/VM/docker/vol-my-proyects:/var/www/html apache-php-img
+docker run -d --name Apache-PHP -p 82:80 -v /path/docker/vol-my-proyects:/var/www/html apache-php
 
 FROM ubuntu
 
@@ -199,9 +202,12 @@ RUN chmod -R 755 /var/www/html/
 
 EXPOSE 80
 
+CMD ["apachectl", "-D", "FOREGROUND"]
+
+
 
 docker build -t ubuntu-apache-php .
-docker run -d --name U-Apache-PHP -p 80:80 -v /home/linux/VM/docker/vol-my-proyects:/var/www/html -it ubuntu-apache-php bash
+docker run -d --name U-Apache-PHP -p 80:80 -v /path/docker/vol-my-proyects:/var/www/html ubuntu-apache-php 
 
 
 

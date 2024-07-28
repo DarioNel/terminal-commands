@@ -248,7 +248,14 @@ adduser [user] [group]      # Agregar un usuario a un grupo
 # Permisos
 
 usermod -aG sudo [user]   # Añadir un usuario con permisos privilegiados
+sudo usermod -aG [group-app] [user] # Añadir una aplicacion al usuario con permisos privilegiados
+newgrp [group-app]
+groups
 
+#Ejemplo
+sudo usermod -aG docker linux
+newgrp docker  
+                 
 chgrp [group] [path]                         # Cambia los permisos de grupos a un archivo o directorio
 chown -R [user]:[group] [path]        # Dar permisos al usuario user y grupo de forma recursiva
 chmod [signo Letra][path]               # Modifica los atributos de archivos y directorios
