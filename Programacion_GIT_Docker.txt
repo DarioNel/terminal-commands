@@ -143,15 +143,15 @@ COPY .  . # O Tambien si estoy en mi directorio del proyecto digo con punto que 
 
 EXPOSE [puerto] # Expone un puerto 
 
-CMD [ “bash”, “/media/datos/script.sh”] # Ejecuta una aplicación
+CMD [ “bash”, “script.sh”] # Ejecuta una aplicación
 
-docker build -t name_img .  # Crea una imagen de mi archivo Dockerfile y lo ejecuta
+docker build -t [img] .  # Crea una imagen de mi archivo Dockerfile y lo ejecuta
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Jellyfin
 
-sudo docker run -d --name LANjellyfin -p 80:8096 -v jellyfin-config:/config -v jellyfin-cache:/cache --mount type=bind,source=/home/user/containers/vol-jellyfin,target=/media --restart=unless-stopped jellyfin/jellyfin 
+sudo docker run -d --name LANjellyfin -p 80:8096 -v jellyfin-config:/config -v jellyfin-cache:/cache --mount type=bind,source=/path/containers/docker/vol-jellyfin,target=/media --restart=unless-stopped jellyfin/jellyfin 
 
 Postges 
 
@@ -159,7 +159,7 @@ sudo docker run -d --name PostgresSQL -p 5432:5432 -v vol-postgres:/var/lib/post
 
 Pgadmin
 
-sudo docker run -d --name Pgadmin -p 80:80 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=1234 elestio/pgadmin
+sudo docker run -d --name Pgadmin -p 81:80 -e PGADMIN_DEFAULT_EMAIL=admin@admin.com -e PGADMIN_DEFAULT_PASSWORD=1234 elestio/pgadmin
 
 Mariadb
 
@@ -167,7 +167,7 @@ sudo docker run -d --name MariaDB -p 3306:3306 -v vol-mariadb:/var/lib/mysql -e 
 
 Phpmyadmin
 
-sudo docker run -d --name Phpmyadmin -p 81:80 -e PMA_HOST=MariaDB phpmyadmin
+sudo docker run -d --name Phpmyadmin -p 82:80 -e PMA_HOST=MariaDB phpmyadmin
 
 Microsoft SQL Server
 
@@ -175,16 +175,6 @@ sudo docker run -d --name MicrosoftSQL -p 1433:1433 -v vol-mssql:/var/opt/mssql 
 
 user : sa
 ----------------------------------------------------------------------------------------------------------------
-Apache - php
-
-nano Dockerfile
-
-FROM php:7.2-apache
-
-COPY ./vol-my-proyects/ /var/www/html/
-
-docker build -t apache-php .
-docker run -d --name Apache-PHP -p 82:80 -v /path/docker/vol-my-proyects:/var/www/html apache-php
 
 FROM ubuntu
 
@@ -192,7 +182,9 @@ RUN apt update
 
 RUN apt upgrade -y
 
-RUN apt install php apache2 -y
+RUN apt install apache2 php -y
+
+RUN apt install libapache2-mod-php php-mysql php-xml php-zip php-gd nano -y
 
 COPY ./vol-my-proyects/ /var/www/html/
 
@@ -206,8 +198,16 @@ CMD ["apachectl", "-D", "FOREGROUND"]
 
 
 
-docker build -t ubuntu-apache-php .
-docker run -d --name U-Apache-PHP -p 80:80 -v /path/docker/vol-my-proyects:/var/www/html ubuntu-apache-php 
+docker build -t apache-php-8.3.6 .
+docker run -d --name Apache-PHP -p 83:80 -v /path/docker/vol-my-proyects:/var/www/html apache-php-8.3.6 
 
+FROM php:7.2-apache
+
+COPY /vol-my-proyects/ /var/www/html/
+
+EXPOSE 80
+
+docker build -t apache-php .
+docker run -d --name apache-php -p 84:80 -v /path/docker/vol-my-proyects:/var/www/html apache-php 
 
 
