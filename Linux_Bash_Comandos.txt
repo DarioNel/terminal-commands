@@ -275,6 +275,12 @@ r - x     5     101
 rw -     6     110
 r x w   7     111
 
+4 permisos de r      
+2 permisos de w
+1 permisos de x
+
+Todos los permisos (4+2+1) => (rwx) = 7
+
 —-------------------------------------------------------------REDES---------------------------------------------
 
 
@@ -282,7 +288,9 @@ lsoft -i : [puerto]       # Identifica el servicio corriendo por el puerto
 
 ping -c 4 [ip]             # Verifico si hay conexión enviando 4 paquete icmp
 
-netstat -nat               # Para ver las conexiones activas
+netstat -natup               # Para ver las conexiones activas
+
+ss -ltuna                    # Para ver las conexiones activas
 
 traceroute [ip]      # Verídico las rutas de mi red cuantos saltos de ips da hasta llegar a mi host
 
@@ -367,19 +375,95 @@ cvlc v4l2:///dev/video0 # Abrir con vlc
 
 —----------------------------------------------------SEGURIDAD-----------------------------------------------------
 
-# Firewall de Linux
+# Firewall ufw
 
-sudo ufw status                               # Permite ver el estado de los puertos
-sudo ufw reset                                  # Resetea de fabrica
-sudo ufw enable                               # Habilita el firewall
-sudo ufw disable                              # Deshabilita el fireawall
-sudo ufw allow [puerto]                   # Abre un puerto
-sudo ufw delete allow [puerto]        # Elimina un puerto
-sudo ufw deny [puerto]                    # Deniega un puerto
+sudo ufw status                             # Permite ver el estado de los puertos
+sudo ufw reset                              # Resetea de fabrica
+sudo ufw enable                             # Habilita el firewall
+sudo ufw disable                            # Deshabilita el fireawall
+sudo ufw allow [puerto]                     # Abre un puerto
+sudo ufw delete allow [puerto]              # Elimina un puerto
+sudo ufw deny [puerto]                      # Deniega un puerto
+
+# Firewall iptables
+
+-A cadena
+-I 
+-t tabla 
+-p protocolo
+-s ip origen
+-d ip desitno
+-i interfaz entrada
+-o interfaz salida
+-j accion
+
+# Lista
+iptables -L -nv --line-numbers  # Lista todo los puertos
+iptables -L OUTPUT -v -n        # Lista los puertos de entrada
+iptables -L OUTPUT -v -n        # Lista los puertos de salida
+iptables -S                     
+
+# Añadir y eliminar reglas
+iptables -A OUTPUT -j ACCEPT
+iptables -D OUTPUT 1
+
+# Aceptar todas las reglas por defecto
+iptables -P INPUT ACCEPT   
+iptables -P OUTPUT ACCEPT   
+iptables -P FORWARD ACCEPT  
+
+# Eliminar reglas y contadores
+iptables -t filter -F  
+iptables -t nat -F     
+iptables -t filter -Z  
+iptables -t nat -Z     
+
+# Denegar todas las reglas por defecto
+iptables -P INPUT DROP    
+iptables -P OUTPUT DROP   
+iptables -P FORWARD DROP  
+
+# Habilitar ICMP
+iptables -A OUTPUT -o enp2s0f5 -p icmp -j ACCEPT 
+iptables -A INPUT -i enp2s0f5 -p icmp -j ACCEPT 
+
+# Habilitar resolución DNS
+iptables -A OUTPUT -o enp2s0f5 -p udp --dport 53 -j ACCEPT
+iptables -A INPUT -i enp2s0f5 -p udp --sport 53 -j ACCEPT
+iptables -A OUTPUT -o enp2s0f5 -p tcp --dport 53 -j ACCEPT
+iptables -A INPUT -i enp2s0f5 -p tcp --sport 53 -j ACCEPT
+
+# Habilitar interfaz loopback en systemd-resolve
+iptables -I INPUT 1 -i lo -j ACCEPT
+iptables -I OUTPUT 1 -o lo -j ACCEPT
+
+# Tráfico HTTP 
+iptables -A OUTPUT -o enp2s0f5 -p tcp --dport 80 -j ACCEPT
+iptables -A INPUT -i enp2s0f5 -p tcp --sport 80 -j ACCEPT
+
+# Tráfico HTTPS 
+iptables -A OUTPUT -o enp2s0f5 -p tcp --dport 443 -j ACCEPT
+iptables -A INPUT -i enp2s0f5 -p tcp --sport 443 -j ACCEPT
+
+# Permitir tráfico De un Puerto 
+iptables -A INPUT  -p tcp --dport [port] -j ACCEPT
+iptables -A OUTPUT -p tcp --sport [port] -j ACCEPT
+
+# Permitir tráfico saliente en el rango de puertos efímeros
+iptables -A OUTPUT -p tcp --sport 1024:65535 -j ACCEPT
+
+# Permitir tráfico Relacionado y establecido
+iptables -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+
+# Cuarda los cambios de la regla
+iptables-save | sudo tee /etc/iptables/rules.v4
+
+# Cuarda los cambios de la regla
+netfilter-persistent save
 
 who
 last  
-netstat -nat
+netstat -natup
 
 
 
@@ -398,6 +482,7 @@ sudo apt autoclean       	#
 sudo apt clean           	# Elimina todos los paquetes de caché descargados.
 sudo apt list                  	# Lista todos los paquetes instalados.
 sudo dpkg -l              	# Lista todos los paquetes instalados utilizando dpkg.
+sudo apt show [paquete]         # Muestra las dependencias del paquete
 
 #FEDORA
 
