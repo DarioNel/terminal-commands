@@ -8,7 +8,7 @@
 
 telnet IP [port] # Para conectarse al servidor desde el PC cliente
 
-------------------------------------------CONEXIÓN POR SERVIDOR SSH—--------------------------------
+------------------------------------------CONEXIÓN POR SERVIDOR SSH—-------------------------------------
 
 Fecha: 25/07/2023 Mod 02/09
 
@@ -85,7 +85,21 @@ Hostname [IP]
         User [name]
         Port [port]
 
--------------------------------------------CONEXIÓN POR NETCAT-------------------------------------------
+-------------------------------------------CONEXIÓN POR VNC GUI---------------------------------------------
+sudo apt install vinagre           # Cliente         probe
+sudo apt install remmina           # Cliente         probe
+sudo apt install tigervnc-viewer   # Cliente         probe
+sudo apt install xtightvncviewer   # Cliente no se que es server?? probe y no entiendo
+
+
+sudo apt-get install tigervnc-standalone-server     # Servidor   esta en los repos
+sudo apt-get install x11vnc                         # Servidor   esta en los repos
+sudo apt-get install tightvncserver                 # Servidor   esta en los repos
+sudo apt-get install vnc4server                     # Servidor   no esta en los repos
+
+-------------------------------------------CONEXIÓN POR RDP GUI---------------------------------------------
+
+-------------------------------------------CONEXIÓN POR NETCAT----------------------------------------------
 
 sudo apt install rlwrap  # Instalar rlwrap
 sudo apt install netcat  # Instalar netcat
