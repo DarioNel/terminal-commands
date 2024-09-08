@@ -22,13 +22,13 @@ git add file.txt                                               # Añadimos un ar
 git commit -m “primer commit”                                  # Confirmamos, y pasamos al repositorio local
 git push -u origin main | master                               # Subimos a nuestro repositorio remoto
 git log                                                        # Vemos el registro
-git log - - oneline                                            # Vemos los registros resumidos en una sola línea
-git restore file.txt                                           # Restaura los cambios y lo añade a la zona de staging y workingdirectory según el caso
-git restore - - stage file.txt                                 #  Restaura y lo quita de la zona de staging
+git log --oneline                                              # Vemos los registros resumidos en una sola línea
+git restore file.txt                                           # Restaura los cambios de la zona del workingdirectory 
+git restore --stage file.txt                                   # Sale de la zona de staging y deshace los cambios aunque no vemos
 
-git restore - - stage - - worktree file.txt  #  Restaura  y lo reescribe en la zona de workingdirectory
+git restore --stage --worktree file.txt  # Restaura los cambios de la zona de staging y de la zona del workingdirectory 
 
-git restore - - source [commit] file.txt     # Restaura al commit seleccionado 
+git restore --source [commit] file.txt     # Restaura al commit seleccionado 
 
 git checkout filet.txt                       # Vuelve a una versión anterior del último commit
 git checkout [commit]
