@@ -29,17 +29,19 @@ git restore --stage file.txt                                   # Sale de la zona
 
 git restore --stage --worktree file.txt                        # Restaura los cambios de la zona de staging y de la zona del workingdirectory 
 
-git restore --source [commit] file.txt                          # Restaura al commit seleccionado 
+git restore --source [commit] file.txt                          # Restaura al commit seleccionado, saliendo de la zona de stage y quedando en la zona de trabajo
 
 git checkout filet.txt                                          # Vuelve a una versión anterior del último commit, cuando estamos modificando en la zona de workingdirectory 
 
-git checkout [commit]      # Vuelve al commit seleccionado pero se desprende de la rama y el HEAD queda posisioando en el commit                   
+git checkout [commit] file.txt     # Vuelve al commit seleccionado quedando en la zona stage 
 
+git checkout [commit]      # Vuelve al commit seleccionado pero se desprende de la rama y el HEAD queda posisioando en el commit                   
 git reset file.txt         # Deshace los cambios de la zona de staging pero no de la zona del workingdirectory 
 
-git reset --soft [commit]  # Regresa al commit seleccionado, borra los anteriores y los cambios del archivo los añade al staging area
+git reset --soft [commit]  # Regresa al commit seleccionado y borra el anterior, se queda en el staging area,y los datos se conserva workingdirectory para volver a commitear
 
-git reset --mixed [commit] # Regresa al commit seleccionado, borra los anteriores y los cambios del archivo los elimina del staging area y del repositorio local .git
+
+git reset --mixed [commit] # Regresa al commit seleccionado y borra el anterior, se borra del staging area,y los datos se conserva workingdirectory para volver a añadir al stagin area y volver a commitear
 
 git reset --hard [commit]  # Regresa al commit seleccionado, borra los anteriores y los cambios del archivo los elimina del workingdirectory,  staging area y del repositorio local .git
 
