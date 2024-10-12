@@ -2,10 +2,11 @@
 --------------------------------------------------------------------------------------------
 1) VARIABLES
 
-Declarar o Definir      	Si tiene una palabra reservada o no y si es local o global.
-Nombre de la variable   	Asignamos un nombre.
-Tipo de datos           	Str, int , float, booleano, etc
-Valor                   	Asignamos el valor de la variable.
+DECLARAR O DEFINIR     	        Si tiene una palabra reservada o no y si es local o global.
+INICIALIZAR                     Si es un contador.
+VARIABLE                 	Asignamos un nombre.
+TIPO DE DATO            	STR INT FLOAT BOLEAN
+VALOR                   	Asignamos el valor de la variable.
 
 Ejemplo: Dim Variable As Integer = 0
 
@@ -14,31 +15,30 @@ Ejemplo: Dim Variable As Integer = 0
 
 ARITMETICOS
 
-suma          	+
-resta         	-
-multiplicacion	*
-division      	/
-division      	//
-potencia      	**
-raiz          	sqrt()
-modulo (resto)	%
+SUMA          	 +
+RESTA         	 -
+MULTIPLICACION	 *
+DIVISION      	 /
+POTENCIA      	 **
+RAIZ         	 sqrt()
+MODULO O RESTO	 %
 
 ASIGNACION
 
-variable =
-variable +=
-variable -=
-variable *=
-variable /=
+VARIABLE  =  <-
+VARIABLE +=
+VARIABLE -=
+VARIABLE *=
+VARIABLE /=
 
 INCREMENTO Y DECREMENTO
 
-variable++            	Incrementa de a uno.
-variable--            	Iecrementa de a uno.
-++variable            	Incrementa de a uno antes de ser usada
---variable            	Decrementa de a uno antes de ser usada.
+VARIABLE++            	Incrementa de a uno.
+VARIABLE--            	Incrementa de a uno.
+++VARIABLE            	Incrementa de a uno antes de ser usada
+--VARIABLE            	Decrementa de a uno antes de ser usada.
 
-COMPARACION
+RELACIONALES
 
 igual      	==
 identidad  	===
@@ -50,13 +50,13 @@ menor igual	<=
 
 LOGICOS
 
-and   
-or    
-not
+AND   
+OR    
+NOT
 
 CONCATENACION +
 
-TERNACIOS
+TERNARIOS
 
 
 ------------------------------------------------------------------------------------------------------------
@@ -65,152 +65,174 @@ TERNACIOS
 
 CONDICIONALES
 
-Condicional Simple if
+SIMPLES - IF
 
-if a < b then
-   imprimo (a)
+IF (Condition) THEN
+    Instructions
+ENDIF
 
-Condicional Simple if else
+DOBLES - IF-ELSE
 
-if a < b then
- 	imprimo(a)
-else
- 	imprimo(b)
+IF (Condition) THEN
+    Instructions
+ELSE
+    Instructions
+ENDIF
 
-Condicional con else if
+MULTIPLES - IF-ELSEIF
 
-if a < b then
-   imprimo(a)
-elseif  a > b
-   imprimo(b)
+IF (Condition) THEN
+    Instructions
+ELSEIF (Condition) THEN
+    Instructions
+ELSE
+    Instructions
+ENDIF
+ 
+MULTIPLES - SELECT CASE
 
-Condicional multiple switch o select case
-
-Select case a
-  case 1:
-	imprimo(1)
-	break
-  case 2:
-	imprimo(2)
-	break
-  case 3:
-	imprimo(3)
-	break
-  default:
-	imprimo("Otro caso")
-	break
-
---------------------------------------------------------------------------------------------
-
-Iterativas Repetitivas Bubles, o Loops
-
-FOR IN LISTA
-
-for i in variable
-    imprimo(i)
-
-FOR EACH
-
-for each i in lista
-  imprimo(i)
+SELECT CASE VAR
+    CASE VAR1:
+        Instructions
+    CASE VAR2:
+        Instructions
+    DEFAULT:
+        Instructions
+ENDSELECT
 
 
-FOR IN RANGO
+---LOOPS---
 
-for i in range(7)
-    imprimo(i)
 
-FOR GENERICO
+-------------------------------------------------------------
 
-for (i=0; i<7;i++){
-    imprimo(i)
-}
+---FOR
 
--------------------------------------------------------------------------------------------------------------------------------
+FOR i IN List DO
+    WRITE i Instructions    
+ENDFOR
 
-WHILE
+FOR i FROM Start TO End STEP N DO
+    WRITE i Instructions    
+ENDFOR
 
-i = 0
-while i < 7
-    imprimo(i)
-    	i+=1
+-------------------------------------------------------------
 
-WHILE SIN CONTADOR
+--WHILE CON CONTADOR
 
-a = 0
-b = 7
+i <- 0
+WHILE (i <= N) DO
+      WRITE i Instructions
+      i<- i + 1
+ENDWHILE
 
-while a < b
-    imprimo("Hola Mundo")
-    	a = 7
+-- WHILE SIN CONTADOR
 
-DO WHILE
+A is equal to B
 
-i = 0
-do {
-imprimo(i)
-i+=1
-} while i < 7
-    
+WHILE (A = B) DO
+    Instructions
+    A <- Get next value of A that is not equal to B
+ENDWHILE
 
-DO WHILE SIN CONTADOR
+-- DO WHILE CON CONTADOR
 
-a = 0
-b = 7
-do {
-imprimo("Hola Mundo")
-a = 7
-} while a < b
-------------------------------------------------------------------------------------------------    
-UNTIL
+i <- 0
+DO 
+   WRITE i Instructions
+   i<- i + 1
+WHILE (i <= N)
 
-i = 0
-until i > 7
-    imprimo(i)
-    	i+=1
+-- DO WHILE SIN CONTADOR
 
-UNTIL SIN CONTADOR
+A is equal to B
+DO
+    Instructions
+    A <- Get next value of A that is not equal to B
+WHILE (A = B)
 
-a = 0
-b = 7
+------------------------------------------------------
 
-until a > b
-    imprimo("Hola Mundo")
-    	a = 7
+--UNTIL CON CONTADOR
 
-DO UNTIL
+i <- 0
+UNTIL (i >= N) DO
+      WRITE i Instructions
+      i<- i + 1
+ENDUNTIL
 
-i = 0
-do {
-imprimo(i)
-i+=1
-} until i > 7
-    
 
-DO UNTIL SIN CONTADOR
+-- UNTIL SIN CONTADOR
 
-a = 0
-b = 7
-do {
-imprimo("Hola Mundo")
-a = 7
-} until a > b
+A is not equal to B
 
--------------------------------------------------------------------------------------------------
+UNTIL (A = B) DO
+    Instructions
+    A <- Get next value of A that is equal to B
+ENDUNTIL
 
-4) ARRAYS
+-- DO UNTIL CON CONTADOR
 
-5) TUPLAS
+i <- 0
+DO 
+   WRITE i Instructions
+   i<- i + 1
+UNTIL (i >= N)
 
-5) CONJUNTOS
+-- DO UNTIL SIN CONTADOR
 
-6) DICCIONARIOS
+A is not equal to B
+DO
+    Instructions
+    A <- Get next value of A that is  equal to B
+UNTIL (A = B)
 
-7) FUNCIONES
+-------------------------------------------------------
 
-8) CLASES, OBJETOS
+4) FUNCIONES
 
-9) ITERABLES
+FUNCTION NAME(PARAMETERS) 
+	Instructions
+ENDFUNTION
+
+NAME(ARGUMENTS)
+
+
+
+FUNCTION NAME(PARAMETERS) 
+	VALUE <- Instructions
+	RETURN VALUE
+ENDFUNTION
+
+VARIABLE <- NAME(ARGUMENTS)
+WRITE VARIABLE
+ 
+--------------------------------------------------------
+
+ARRAYS
+
+DEFINE ARRAY, i AS INTEGER
+
+DIM ARRAY[N]
+
+ARRAY[0] <- N
+ARRAY[1] <- N
+ARRAY[2] <- N
+ARRAY[3] <- N
+
+WRITE ARRAY[1]
+
+i <- N
+VALUE <- ARRAY[i]
+WRITE VALUE
+
+-----------------------------------------------------------
+
+CONJUNTOS
+
+CLASES, OBJETOS
+
+
 
 
 
