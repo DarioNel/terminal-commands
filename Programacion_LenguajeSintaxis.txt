@@ -5,62 +5,32 @@ a = 7
 
 # Imprimir
 print(a)
-print("Hola mundo")
+print("str")
 
 # Concatenacion
-print("Hola mundo, mi número favorito es el"+ a)
+, +
 
-# Imprimir elementos diferentes string y numérico.
-print("Hola mundo, mi número favorito es el", a)
-
-# Condición
-if 1 < a:
-	# Código si la condición es verdadera
-   
-
-# else
-else:
-	# Código si la condición no es verdadera
-    
-
-# Condición alternativa
-elif 7 == 1:
-	# Código si esta condición es verdadera
-   
+# Condición 
+elif :
 
 # operador incremento
 i += 1
 
------------------JAVASCRIPT-------------------------
+-----------------JAVASCRIPT-------------------
 
 // variable
 var a = 7;
 
 // Imprimir
 console.log(a);
-console.log("Hola mundo");
+console.log("str");
 
 // Concatenacion
-console.log("Hola mundo, mi número favorito es el " + a);
-
-// Imprimir elementos diferenes string y numerico.
-console.log("Hola mundo, mi número favorito es el", a);
+, +
 
 // Condicion
-if (1 < a) {
-	// Código si la condición es verdadera
-}
-
-// else
-else {
-	// Código si la condición no es verdadera
-}
-
-// Condición alternativa
-else if (7 == 1) {
-	// Código si esta condición es verdadera
-}
-
+else if () {}
+	
 // operador incremento
 i++;
 
@@ -72,28 +42,13 @@ $a = 7;
 
 // Imprimir
 echo $a;
-echo "Hola mundo";
+echo "str";
 
 // Concatenacion
-echo "Hola mundo, mi número favorito es el " . $a;
-
-// Imprimir elementos diferenes string y numerico.
-echo "Hola mundo, mi número favorito es el", $a;
+, .
 
 // Condicion
-if (1 < $a) {
-	// Código si la condición es verdadera
-}
-
-// else
-else {
-	// Código si la condición no es verdadera
-}
-
-// Condición alternativa
-elseif (7 == 1) {
-	// Código si esta condición es verdadera
-}
+elseif () {}
 
 // operador incremento
 $i++;
@@ -108,93 +63,35 @@ a=7
 
 # Imprimir
 echo $a
-echo "Hola mundo"
+echo "str"
 
 # Concatenacion
-echo "Hola mundo, mi número favorito es el " $a
-
-# Imprimir elementos diferenes string y numerico.
-echo "Hola mundo, mi número favorito es el" $a
 
 # Condicion
-if [ 1 -lt $a ]; then
-	# Código si la condición es verdadera
-fi
-
-# else
-if [ 1 -ge $a ]; then
-	# Código si la condición no es verdadera
+if [ $a ]; then	
 fi
 
 # operador incremento
 i+=1
 
---------------------BATCH----------------------------
-
-@echo off
-
-:: variable
-set a=7
-
-:: Imprimir
-echo %a%
-echo "Hola mundo"
-
-:: Concatenacion
-echo "Hola mundo, mi número favorito es el " %a%
-
-:: Imprimir elementos diferenes string y numerico.
-echo "Hola mundo, mi número favorito es el" %a%
-
-:: Condicion
-if 1 lss %a% (
-	:: Código si la condición es verdadera
-)
-
-:: else
-if 1 geq %a% (
-	:: Código si la condición no es verdadera
-)
-
-:: operador incremento
-set /a i+=1
-
 --------------------VB.NET---------------------------
+' variable
+Dim a As Integer = 7
 
-Module Module1
-	Sub Main()
-    	' variable
-    	Dim a As Integer = 7
+' Imprimir
+Console.WriteLine(a)
+Console.WriteLine("str")
 
-    	' Imprimir
-    	Console.WriteLine(a)
-    	Console.WriteLine("Hola mundo")
+' Concatenacion
+, & 
 
-    	' Concatenacion
-    	Console.WriteLine("Hola mundo, mi número favorito es el " & a)
+' Condicion
+ElseIf  Then
+        	
+End If
+' operador incremento
+i += 1
 
-    	' Imprimir elementos diferenes string y numerico.
-    	Console.WriteLine("Hola mundo, mi número favorito es el", a)
-
-    	' Condicion
-    	If 1 < a Then
-        	' Código si la condición es verdadera
-    	End If
-
-    	' else
-    	Else 1 < a Then
-        	' Código si la condición no es verdadera
-    	End If
-
-    	' Condición alternativa
-    	ElseIf 7 = 1 Then
-        	' Código si esta condición es verdadera
-    	End If
-
-    	' operador incremento
-    	i += 1
-	End Sub
-End Module
 
 
 
