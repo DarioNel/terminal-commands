@@ -2,13 +2,16 @@
 --------------------------------------------------------------------------------------------
 1) VARIABLES
 
-DECLARAR O DEFINIR     	        Si tiene una palabra reservada o no y si es local o global.
-INICIALIZAR                     Si es un contador.
-VARIABLE                 	Asignamos un nombre.
-TIPO DE DATO            	STR INT FLOAT BOLEAN
-VALOR                   	Asignamos el valor de la variable.
+DECLARAR O DEFINIR     	        Puede tener palabras reservadas, pueden ser locales o globales.
+VAR                 	        Asignamos un nombre.
+TIPO DE DATO            	Integer, Float, Double, Character, Boolean
+VALOR                   	Asignamos el valor de la variable, si el valor es 0 se dice que se inicializar (Contadores)
 
-Ejemplo: Dim Variable As Integer = 0
+Public Dim VAR As Integer <- 0
+
+IMPRIMIMOS
+
+WRITE VAR
 
 ----------------------------------------------------------------------------------------------
 2) OPERADORES
@@ -40,13 +43,13 @@ VARIABLE--            	Incrementa de a uno.
 
 RELACIONALES
 
-igual      	==
-identidad  	===
-distino    	!=
-mayor      	>
-menor      	<
-mayor igual	>=
-menor igual	<=
+Igualdad      	==
+Identidad  	===
+Distino    	!=    <>
+Mayor      	>
+Menor      	<
+Mayor igual	>=
+Menor igual	<=
 
 LOGICOS
 
@@ -54,9 +57,22 @@ AND
 OR    
 NOT
 
-CONCATENACION +
-
 TERNARIOS
+
+CONCATENACION 
+
+, Para concatenar elemenos con distintos tipos de datos 
++ Para concatenar elementos con mismo tipo de datos
+
+
+INGRRESAR DATO POR TECLADO EN VARIABLE
+
+WRITE "Ingrese un tipo de dato: "
+LEER variable
+
+IMPRIMIR VARIABLE 
+
+WRITE variable
 
 
 ------------------------------------------------------------------------------------------------------------
@@ -191,21 +207,21 @@ UNTIL (A = B)
 
 4) FUNCIONES
 
-FUNCTION NAME(PARAMETERS) 
+FUNCTION Name(PARAMETERS) 
 	Instructions
 ENDFUNTION
 
-NAME(ARGUMENTS)
+Name(ARGUMENTS)
 
 
 
-FUNCTION NAME(PARAMETERS) 
-	VALUE <- Instructions
-	RETURN VALUE
+FUNCTION Name(PARAMETERS) 
+	Result <- Instructions
+	RETURN Result
 ENDFUNTION
 
-VARIABLE <- NAME(ARGUMENTS)
-WRITE VARIABLE
+Variable <- Name(ARGUMENTS)
+WRITE Variable
  
 --------------------------------------------------------
 
@@ -223,14 +239,12 @@ ARRAY[3] <- N
 WRITE ARRAY[1]
 
 i <- N
-VALUE <- ARRAY[i]
-WRITE VALUE
+Variable <- ARRAY[i]
+WRITE Variable
 
 -----------------------------------------------------------
 
-CONJUNTOS
 
-CLASES, OBJETOS
 
 
 
