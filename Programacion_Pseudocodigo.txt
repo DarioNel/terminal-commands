@@ -5,7 +5,7 @@
 DECLARAR O DEFINIR     	        Puede tener palabras reservadas, pueden ser locales o globales.
 VAR                 	        Asignamos un nombre.
 TIPO DE DATO            	Integer, Float, Double, Character, Boolean
-VALOR                   	Asignamos el valor de la variable, si el valor es 0 se dice que se inicializar (Contadores)
+VALOR                   	Asignamos el valor de la variable, si el valor es 0 se lo dice "inicializar" una variable (Contadores)
 
 Public Dim VAR As Integer <- 0
 
@@ -68,7 +68,7 @@ CONCATENACION
 INGRRESAR DATO POR TECLADO EN VARIABLE
 
 WRITE "Ingrese un tipo de dato: "
-LEER variable
+READ variable
 
 IMPRIMIR VARIABLE 
 
@@ -168,24 +168,6 @@ DO
 WHILE (A = B)
 
 ------------------------------------------------------
-
---UNTIL CON CONTADOR
-
-i <- 0
-UNTIL (i >= N) DO
-      WRITE i Instructions
-      i<- i + 1
-ENDUNTIL
-
-
--- UNTIL SIN CONTADOR
-
-A is not equal to B
-
-UNTIL (A = B) DO
-    Instructions
-    A <- Get next value of A that is equal to B
-ENDUNTIL
 
 -- DO UNTIL CON CONTADOR
 
