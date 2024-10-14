@@ -4,10 +4,10 @@
 
 DECLARAR O DEFINIR     	        Puede tener palabras reservadas, pueden ser locales o globales.
 VAR                 	        Asignamos un nombre.
-TIPO DE DATO            	Integer, Float, Double, Character, Boolean
+TIPO DE DATO            	Integer, Float, Double, String, Character, Boolean
 VALOR                   	Asignamos el valor de la variable, si el valor es 0 se lo dice "inicializar" una variable (Contadores)
 
-Public Dim VAR As Integer <- 0
+Define VAR As Integer <- 0
 
 IMPRIMIMOS
 
@@ -26,21 +26,6 @@ POTENCIA      	 **
 RAIZ         	 sqrt()
 MODULO O RESTO	 %
 
-ASIGNACION
-
-VARIABLE  =  <-
-VARIABLE +=
-VARIABLE -=
-VARIABLE *=
-VARIABLE /=
-
-INCREMENTO Y DECREMENTO
-
-VARIABLE++            	Incrementa de a uno.
-VARIABLE--            	Incrementa de a uno.
-++VARIABLE            	Incrementa de a uno antes de ser usada
---VARIABLE            	Decrementa de a uno antes de ser usada.
-
 RELACIONALES
 
 Igualdad      	==
@@ -57,6 +42,21 @@ AND
 OR    
 NOT
 
+ASIGNACION
+
+VARIABLE  =  <-
+VARIABLE +=
+VARIABLE -=
+VARIABLE *=
+VARIABLE /=
+
+INCREMENTO Y DECREMENTO
+
+VARIABLE++            	Incrementa de a uno.
+VARIABLE--            	Incrementa de a uno.
+++VARIABLE            	Incrementa de a uno antes de ser usada
+--VARIABLE            	Decrementa de a uno antes de ser usada.
+
 TERNARIOS
 
 CONCATENACION 
@@ -65,7 +65,7 @@ CONCATENACION
 + Para concatenar elementos con mismo tipo de datos
 
 
-INGRRESAR DATO POR TECLADO EN VARIABLE
+INGRESAR DATO POR TECLADO EN VARIABLE
 
 WRITE "Ingrese un tipo de dato: "
 READ variable
@@ -117,10 +117,8 @@ SELECT CASE VAR
 ENDSELECT
 
 
----LOOPS---
+ITERATIVOS - LOOPS , BUCLES
 
-
--------------------------------------------------------------
 
 ---FOR
 
@@ -168,6 +166,24 @@ DO
 WHILE (A = B)
 
 ------------------------------------------------------
+
+--UNTIL CON CONTADOR
+
+i <- 0
+UNTIL (i >= N) DO
+      WRITE i Instructions
+      i<- i + 1
+ENDUNTIL
+
+
+-- UNTIL SIN CONTADOR
+
+A is not equal to B
+
+UNTIL (A = B) DO
+    Instructions
+    A <- Get next value of A that is equal to B
+ENDUNTIL
 
 -- DO UNTIL CON CONTADOR
 
