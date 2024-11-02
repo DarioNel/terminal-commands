@@ -87,6 +87,52 @@ CMD [ “bash”, “script.sh”] # Ejecuta una aplicación
 
 docker build -t [img] .  # Crea una imagen de mi archivo Dockerfile y lo ejecuta
 
+# Creación de un archivo docker-compose.yml 
+
+version: '3.8'
+
+services:
+
+    service1:
+
+      image: name
+      container_name: name
+      ports:
+        - "80:80"
+      networks:
+        - name_network
+      volumes:
+        - /path/app/container
+      environment:
+        VARIABLE_1: value
+        VARIABLE_2: value
+
+    service2:
+
+      image: name
+      container_name: name
+      ports:
+        - "80:80"
+      networks:
+        - name_network
+      volumes:
+        - /path/my/host:/path/app/container
+      environment:
+        VARIABLE_1: value
+        VARIABLE_2: value    
+       
+volumes:
+  vol-service2:
+  
+networks:
+  name_network:
+    driver: bridge
+
+docker compose up -d
+docker compose down
+docker compose stop
+docker compose
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Jellyfin
@@ -137,17 +183,7 @@ EXPOSE 80
 CMD ["apachectl", "-D", "FOREGROUND"]
 
 
+docker build -t apache-php8 .
 
-docker build -t apache-php-8.3.6 .
-docker run -d --name Apache-PHP -p 83:80 -v /path/docker/vol-my-proyects:/var/www/html apache-php-8.3.6 
-
-FROM php:7.2-apache
-
-COPY /vol-my-proyects/ /var/www/html/
-
-EXPOSE 80
-
-docker build -t apache-php .
-docker run -d --name apache-php -p 84:80 -v /path/docker/vol-my-proyects:/var/www/html apache-php 
-
+docker run -d --name apache-php -p 80:80 -v /path/docker/vol-my-proyects:/var/www/html apache-php8 
 
