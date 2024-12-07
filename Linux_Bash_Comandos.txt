@@ -387,8 +387,9 @@ sudo ufw deny [puerto]                      # Deniega un puerto
 
 # Firewall iptables
 
--A cadena
+-A añadir
 -I 
+-P Politica
 -t tabla 
 -p protocolo
 -s ip origen
